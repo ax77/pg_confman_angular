@@ -1,1 +1,146 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  background-color: rgb(232,232,232);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* main layout */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 50px;
+  width: 100%;
+}
+
+.nav-item {
+
+}
+
+.tabs {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-height: 50px;
+  width: 100%;
+  border: 1px solid gray;
+}
+
+.tab-item {
+  border-bottom: none;
+  margin-right: 8px;
+  padding: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border: 1px solid gray;
+  border-bottom: none;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 50px;
+  width: 100%;
+  border-top: 1px solid gray;
+}
+/* main layout */
+
+/* component 1 */
+.select-component {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.selector-wrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  margin-right: 8px;
+  border: 1px solid gray;
+  border-top: none;
+  border-bottom: none;
+}
+
+.select-page-database-tables {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.select-page-buttons {
+  display: flex;
+  min-height: 32px;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 4px;
+  margin-bottom: 8px;
+
+  border-bottom: 1px solid gray;
+}
+
+.btn {
+  padding: 4px;
+  margin-right: 4px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+
+.db-tables-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.unions {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 70px;
+  overflow-y: auto;
+}
+
+.union-item {
+  margin-top: 4px;
+  margin-bottom: 4px;
+
+  padding: 4px;
+  cursor: pointer;
+
+  border: 1px solid gray;
+}
+
+.table-name {
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 4px;
+  margin-bottom: 4px;
+}
+
+.field-name {
+  cursor: pointer;
+  padding: 2px;
+  margin-left: 8px;
+  margin-bottom: 2px;
+}

@@ -4,19 +4,41 @@
     <button class="btn">mul</button>
     <button class="btn">div</button>
   </div>
-  <div class="db-tables-list">
+
+  <div
+    class="db-tables-list"
+  >
+
     <div
-      class="table-name"
+      class="one-table"
       *ngFor="let t of selectService.dbTables$ | async"
     >
-      {{t.name}}
+      <!-- table -->
       <div
-        class="field-name"
-        *ngFor="let f of t.fields"
+        class="table-name"
+        (dblclick)="onDatabaseTables_tableName_dblclick(t)"
+        (click)="onDatabaseTables_tableName_click(t)"
       >
-        {{f.name}}
+        {{t.name}}
       </div>
+
+      <!-- fields -->
+      <div
+        class="field-group"
+        *ngIf="t.selected"
+      >
+        <div
+          class="field-name"
+          *ngFor="let f of t.fields; let fieldIndex = index;"
+          (dblclick)="onDatabaseTables_fieldName_dblclick(f)"
+          (click)="onDatabaseTables_fieldName_click(f)"
+        >
+          {{fieldIndex}}) {{f.name}}
+        </div>
+      </div>
+
     </div>
 
   </div>
+
 </div>

@@ -135,12 +135,22 @@
   cursor: pointer;
   padding: 4px;
   margin-left: 4px;
-  margin-bottom: 4px;
+}
+
+.field-group {
+  //border: 1px solid gray;
 }
 
 .field-name {
-  cursor: pointer;
-  padding: 2px;
-  margin-left: 8px;
+  padding: 4px;
+  margin-left: 16px;
   margin-bottom: 2px;
+  cursor: pointer;
+  //border: 1px solid gray;
+}
+
+.one-table {
+  margin-bottom: 4px;
+  margin-left: 8px;
+  //border: 1px solid gray;
 }

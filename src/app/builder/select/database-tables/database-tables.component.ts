@@ -19,6 +19,22 @@ export class DatabaseTablesComponent implements OnInit {
   }
 
   addMockTable() {
-    this.selectService.addTable(new Table('users' + this.getRandomId().toString(), [new Field('user_id'), new Field('username'), new Field('password')]))
+    this.selectService.addDbTables(new Table('users' + this.getRandomId().toString(), [new Field('user_id'), new Field('username'), new Field('password')]))
+  }
+
+  onDatabaseTables_tableName_dblclick(t: Table) {
+    t.selected = !t.selected;
+  }
+
+  onDatabaseTables_tableName_click(t: Table) {
+
+  }
+
+  onDatabaseTables_fieldName_dblclick(f: Field) {
+    console.log(f)
+  }
+
+  onDatabaseTables_fieldName_click(f: Field) {
+    console.log(f)
   }
 }

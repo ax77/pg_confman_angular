@@ -58,6 +58,8 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+
+  background-color: rgb(232,232,232);
 }
 
 .footer {
@@ -101,7 +103,7 @@ body {
   width: 100%;
   align-items: center;
   justify-content: flex-start;
-  margin-left: 4px;
+  //margin-left: 4px;
   margin-bottom: 8px;
 
   border-bottom: 1px solid gray;

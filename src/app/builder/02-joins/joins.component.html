@@ -1,1 +1,123 @@
-<p>joins works!</p>
+<div class="joins-component">
+
+  <div class="joins-wrapper">
+
+    <div class="select-page-buttons">
+      <button class="btn">add</button>
+      <button class="btn">mul</button>
+      <button class="btn">div</button>
+    </div>
+
+    <div class="joins-list">
+      <div class="join-item">
+        <button class="btn">X</button>
+
+        <!-- <div class="join-type"> -->
+        <select class="join-type">
+          <option>INNER JOIN</option>
+          <option>LEFT OUTER JOIN</option>
+          <option>RIGHT OUTER JOIN</option>
+          <option>FULL OUTER JOIN</option>
+        </select>
+        <!-- </div> -->
+
+        <select class="main-selector">
+          <option>Choose left table...</option>
+          <option>users</option>
+          <option>roles</option>
+          <option>user_has_roles</option>
+        </select>
+
+        <select class="main-selector">
+          <option>Choose right table...</option>
+          <option>users</option>
+          <option>roles</option>
+          <option>user_has_roles</option>
+        </select>
+
+        <div style="margin-right: 8px">ON</div>
+
+        <select class="main-selector">
+          <option>Choose left table field...</option>
+          <option>user_id</option>
+          <option>username</option>
+          <option>password</option>
+        </select>
+
+        <select class="conditions">
+          <option>=</option>
+          <option><></option>
+          <option><</option>
+          <option>></option>
+          <option><=</option>
+          <option>>=</option>
+        </select>
+
+        <select class="main-selector">
+          <option>Choose right table field...</option>
+          <option>role_id</option>
+          <option>authority</option>
+        </select>
+
+        <div class="condition"></div>
+      </div>
+
+      <!-- 2 -->
+
+      <div class="join-item">
+        <button class="btn">X</button>
+
+        <!-- <div class="join-type"> -->
+        <select class="join-type">
+          <option>INNER JOIN</option>
+          <option>LEFT OUTER JOIN</option>
+          <option>RIGHT OUTER JOIN</option>
+          <option>FULL OUTER JOIN</option>
+        </select>
+        <!-- </div> -->
+
+        <select class="main-selector">
+          <option>Choose left table...</option>
+          <option>users</option>
+          <option>roles</option>
+          <option>user_has_roles</option>
+        </select>
+
+        <select class="main-selector">
+          <option>Choose right table...</option>
+          <option>users</option>
+          <option>roles</option>
+          <option>user_has_roles</option>
+        </select>
+
+        <div style="margin-right: 8px">ON</div>
+
+        <select class="main-selector">
+          <option>Choose left table field...</option>
+          <option>user_id</option>
+          <option>username</option>
+          <option>password</option>
+        </select>
+
+        <select class="conditions">
+          <option>=</option>
+          <option><></option>
+          <option><</option>
+          <option>></option>
+          <option><=</option>
+          <option>>=</option>
+        </select>
+
+        <select class="main-selector">
+          <option>Choose right table field...</option>
+          <option>role_id</option>
+          <option>authority</option>
+        </select>
+
+        <div class="condition"></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

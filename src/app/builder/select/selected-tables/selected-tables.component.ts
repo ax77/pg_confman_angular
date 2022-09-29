@@ -22,7 +22,13 @@ export class SelectedTablesComponent implements OnInit {
     t.selected = !t.selected;
   }
 
-  onSelectedTables_fieldNameClick(f: Field) {
+  onSelectedTables_fieldName_dblclick(f: Field) {
     this.selectService.addSelectedFields(f);
+  }
+
+  onSelectedTables_tableName_dblclick(t: Table) {
+    for(let f of t.fields) {
+      this.selectService.addSelectedFields(f);
+    }
   }
 }

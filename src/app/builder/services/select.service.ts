@@ -60,29 +60,50 @@ export class SelectService {
 
   addSelectedFields(field: Field) {
     this.selectedFields = [
-      ...this.selectedFields, field
+      ...this.selectedFields, this.getFieldNameAsAlias(field)
     ];
   }
 
-  // util
-  getTableNameAsAlias(tableName: string) {
-
+  hasTableInSelectedTables(tableName: string): boolean {
     // TODO: clean-code
-    let contains = false;
     for(let t of this.selectedTables) {
       if(t.tableName == tableName) {
-        contains = true;
-        break;
+        return true;
       }
     }
+    return false;
+  }
+
+  hasFieldInSelectedFields(f: Field): boolean {
+    for(let selectedField of this.selectedFields) {
+      if(selectedField.fieldName == f.fieldName) {
+        if(selectedField.ownerTable.tableName == f.ownerTable.tableName) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  // util
+  getTableNameAsAlias(tableName: string): string {
 
     // return the original name
-    if(!contains) {
+    if(!this.hasTableInSelectedTables(tableName)) {
       return tableName;
     }
 
     // return the alias name, i.e. by adding a counter after the original name
     return tableName + this.counter.getNext().toString();
+  }
+
+  getFieldNameAsAlias(field: Field): Field {
+    if(!this.hasFieldInSelectedFields(field)) {
+      return field;
+    }
+
+    let asiasFieldName = field.fieldName + this.counter.getNext().toString();
+    return new Field(asiasFieldName, field.ownerTable);
   }
 
   private fillMockData() {

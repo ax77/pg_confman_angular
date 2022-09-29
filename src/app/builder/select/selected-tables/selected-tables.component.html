@@ -35,6 +35,7 @@
         <!-- table -->
         <div
           class="table-name"
+          (dblclick)="onSelectedTables_tableName_dblclick(t)"
         >
           {{t.tableName}}
         </div>
@@ -48,7 +49,7 @@
         <div
           class="field-name"
           *ngFor="let f of t.fields; let fieldIndex = index;"
-          (dblclick)="onSelectedTables_fieldNameClick(f)"
+          (dblclick)="onSelectedTables_fieldName_dblclick(f)"
         >
           {{fieldIndex}}) {{f.fieldName}}
         </div>

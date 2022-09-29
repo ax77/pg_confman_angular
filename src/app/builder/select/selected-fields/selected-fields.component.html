@@ -4,5 +4,16 @@
     <button class="btn">mul</button>
     <button class="btn">div</button>
   </div>
-  <div class="db-tables-list"></div>
+  <div
+    class="db-tables-list"
+  >
+    <!-- fields -->
+    <div
+      class="field-name"
+      *ngFor="let f of selectService.selectedFields$ | async"
+    >
+      {{f.ownerTable.tableName}}.{{f.fieldName}}
+    </div>
+
+  </div>
 </div>

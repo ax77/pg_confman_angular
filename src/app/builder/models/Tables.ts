@@ -1,5 +1,5 @@
 export class Field {
-  constructor(public fieldName: string, public ownerTableName: string) {
+  constructor(public fieldName: string, public ownerTable: Table) {
   }
 }
 
@@ -11,6 +11,6 @@ export class Table {
   }
 
   addField(fieldName: string) {
-    this.fields.push(new Field(fieldName, this.tableName))
+    this.fields.push(new Field(fieldName, this))
   }
 }

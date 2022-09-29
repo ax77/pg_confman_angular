@@ -48,6 +48,7 @@
         <div
           class="field-name"
           *ngFor="let f of t.fields; let fieldIndex = index;"
+          (dblclick)="onSelectedTables_fieldNameClick(f)"
         >
           {{fieldIndex}}) {{f.fieldName}}
         </div>

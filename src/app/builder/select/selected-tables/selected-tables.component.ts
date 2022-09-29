@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SelectService} from "../../services/select.service";
-import {Table} from "../../models/Tables";
+import {Field, Table} from "../../models/Tables";
 
 @Component({
   selector: 'app-selected-tables',
@@ -20,5 +20,9 @@ export class SelectedTablesComponent implements OnInit {
 
   foldTable(t: Table) {
     t.selected = !t.selected;
+  }
+
+  onSelectedTables_fieldNameClick(f: Field) {
+    this.selectService.addSelectedFields(f);
   }
 }

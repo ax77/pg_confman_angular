@@ -43,7 +43,8 @@ export class DatabaseTablesComponent implements OnInit {
   }
 
   onDatabaseTables_fieldName_dblclick(f: Field) {
-    console.log(f)
+    this.selectService.addSelectedTables(f.ownerTable);
+    this.selectService.addSelectedFields(f);
   }
 
   onDatabaseTables_fieldName_click(f: Field) {

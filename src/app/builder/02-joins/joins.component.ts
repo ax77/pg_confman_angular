@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SelectService} from "../services/select.service";
+import {Event} from "@angular/router";
 
 @Component({
   selector: 'app-joins',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JoinsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public selectService: SelectService) { }
 
   ngOnInit(): void {
+  }
+
+  onLeftTableSelect(event: any) {
+    this.selectService.lhsTable = this.selectService.findSelectedTableOrReturnAnEmptyOne(event.target.value);
+  }
+
+  onRightTableSelect(event: any) {
+    this.selectService.rhsTable = this.selectService.findSelectedTableOrReturnAnEmptyOne(event.target.value);
   }
 
 }

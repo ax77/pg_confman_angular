@@ -8,37 +8,18 @@ import {CounterService} from "./counter.service";
 })
 export class SelectService {
 
+  //////////////////////////////////////////////////////////////////////
+  // database-tables
+
   private readonly _dbTables = new BehaviorSubject<Table[]>([]);
   readonly dbTables$: Observable<Table[]> = this._dbTables.asObservable();
-
-  private readonly _selectedTables = new BehaviorSubject<Table[]>([]);
-  readonly selectedTables$ = this._selectedTables.asObservable();
-
-  private readonly _selectedFields = new BehaviorSubject<Field[]>([]);
-  readonly selectedFields$ = this._selectedFields.asObservable();
 
   get dbTables(): Table[] {
     return this._dbTables.getValue();
   }
 
-  get selectedTables(): Table[] {
-    return this._selectedTables.getValue();
-  }
-
-  get selectedFields(): Field[] {
-    return this._selectedFields.getValue();
-  }
-
   private set dbTables(val: Table[]) {
     this._dbTables.next(val);
-  }
-
-  private set selectedTables(val: Table[]) {
-    this._selectedTables.next(val);
-  }
-
-  private set selectedFields(val: Field[]) {
-    this._selectedFields.next(val);
   }
 
   addDbTables(table: Table) {
@@ -47,9 +28,25 @@ export class SelectService {
     ];
   }
 
+
+  //////////////////////////////////////////////////////////////////////
+  // selected-tables
+
+  private readonly _selectedTables = new BehaviorSubject<Table[]>([]);
+  readonly selectedTables$ = this._selectedTables.asObservable();
+
+  get selectedTables(): Table[] {
+    return this._selectedTables.getValue();
+  }
+
+
+  private set selectedTables(val: Table[]) {
+    this._selectedTables.next(val);
+  }
+
   addSelectedTables(table: Table) {
     let cloned = new Table(this.getTableNameAsAlias(table.tableName));
-    for(let field of table.fields) {
+    for (let field of table.fields) {
       cloned.addField(field.fieldName);
     }
 
@@ -58,26 +55,51 @@ export class SelectService {
     ]
   }
 
-  addSelectedFields(field: Field) {
-    this.selectedFields = [
-      ...this.selectedFields, this.getFieldNameAsAlias(field)
-    ];
-  }
-
   hasTableInSelectedTables(tableName: string): boolean {
     // TODO: clean-code
-    for(let t of this.selectedTables) {
-      if(t.tableName == tableName) {
+    for (let t of this.selectedTables) {
+      if (t.tableName == tableName) {
         return true;
       }
     }
     return false;
   }
 
+  findSelectedTableOrReturnAnEmptyOne(tableName: string): Table {
+    for(let t of this.selectedTables) {
+      if(t.tableName == tableName) {
+        return t;
+      }
+    }
+    return new Table('');
+  }
+
+
+  //////////////////////////////////////////////////////////////////////
+  // selected-fields
+
+  private readonly _selectedFields = new BehaviorSubject<Field[]>([]);
+  readonly selectedFields$ = this._selectedFields.asObservable();
+
+
+  get selectedFields(): Field[] {
+    return this._selectedFields.getValue();
+  }
+
+  private set selectedFields(val: Field[]) {
+    this._selectedFields.next(val);
+  }
+
+  addSelectedFields(field: Field) {
+    this.selectedFields = [
+      ...this.selectedFields, this.getFieldNameAsAlias(field)
+    ];
+  }
+
   hasFieldInSelectedFields(f: Field): boolean {
-    for(let selectedField of this.selectedFields) {
-      if(selectedField.fieldName == f.fieldName) {
-        if(selectedField.ownerTable.tableName == f.ownerTable.tableName) {
+    for (let selectedField of this.selectedFields) {
+      if (selectedField.fieldName == f.fieldName) {
+        if (selectedField.ownerTable.tableName == f.ownerTable.tableName) {
           return true;
         }
       }
@@ -85,11 +107,38 @@ export class SelectService {
     return false;
   }
 
+
+  //////////////////////////////////////////////////////////////////////
+  // joins
+  private readonly _lhsTable = new BehaviorSubject<Table>(new Table(''));
+  readonly lhsTable$ = this._lhsTable.asObservable();
+
+  private readonly _rhsTable = new BehaviorSubject<Table>(new Table(''));
+  readonly rhsTable$ = this._rhsTable.asObservable();
+
+  get lhsTable(): Table {
+    return this._lhsTable.getValue();
+  }
+
+  set lhsTable(table: Table) {
+    this._lhsTable.next(table);
+  }
+
+  get rhsTable(): Table {
+    return this._rhsTable.getValue();
+  }
+
+  set rhsTable(table: Table) {
+    this._rhsTable.next(table);
+  }
+
+
+  //////////////////////////////////////////////////////////////////////
   // util
   getTableNameAsAlias(tableName: string): string {
 
     // return the original name
-    if(!this.hasTableInSelectedTables(tableName)) {
+    if (!this.hasTableInSelectedTables(tableName)) {
       return tableName;
     }
 
@@ -98,7 +147,7 @@ export class SelectService {
   }
 
   getFieldNameAsAlias(field: Field): Field {
-    if(!this.hasFieldInSelectedFields(field)) {
+    if (!this.hasFieldInSelectedFields(field)) {
       return field;
     }
 

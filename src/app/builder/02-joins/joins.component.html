@@ -40,9 +40,10 @@
         <!-- LHS -->
         <select
           class="main-selector"
-          (change)="onLeftTableSelect($event)"
+          (change)="onLeftTableSelect($event, joinItem.id)"
         >
-          <option>Choose left table...</option>
+          <option>{{joinItem.lhsTable.tableName}}</option>
+          <option>...</option>
           <option *ngFor="let t of selectService.selectedTables$ | async">
             {{t.tableName}}
           </option>
@@ -51,9 +52,10 @@
         <!-- RHS -->
         <select
           class="main-selector"
-          (change)="onRightTableSelect($event)"
+          (change)="onRightTableSelect($event, joinItem.id)"
         >
-          <option>Choose right table...</option>
+          <option>{{joinItem.rhsTable.tableName}}</option>
+          <option>...</option>
           <option *ngFor="let t of selectService.selectedTables$ | async">
             {{t.tableName}}
           </option>
@@ -65,15 +67,23 @@
 
         <select
           class="main-selector"
+          (change)="onLeftFieldSelect($event, joinItem.id)"
         >
-          <option>Choose left table field...</option>
+          <option>{{joinItem.lhsField.fieldName}}</option>
+          <option>...</option>
           <option
+            *ngFor="let f of joinItem.lhsTable.fields"
           >
-            TODO
+            {{f.fieldName}}
           </option>
         </select>
 
-        <select class="conditions">
+        <select
+          class="conditions"
+          (change)="onConditionChange($event, joinItem.id)"
+        >
+          <option>{{joinItem.condition}}</option>
+          <option>...</option>
           <option>=</option>
           <option><></option>
           <option><</option>
@@ -84,11 +94,14 @@
 
         <select
           class="main-selector"
+          (change)="onRightFieldSelect($event, joinItem.id)"
         >
-          <option>Choose right table field...</option>
+          <option>{{joinItem.rhsField.fieldName}}</option>
+          <option>...</option>
           <option
+            *ngFor="let f of joinItem.rhsTable.fields"
           >
-            TODO
+            {{f.fieldName}}
           </option>
         </select>
 

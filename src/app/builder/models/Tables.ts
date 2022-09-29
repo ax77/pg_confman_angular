@@ -16,4 +16,13 @@ export class Table {
   addField(fieldName: string) {
     this.fields.push(new Field(fieldName, this))
   }
+
+  findFieldForSure(fieldName: string): Field {
+    for(let f of this.fields) {
+      if(f.fieldName == fieldName) {
+        return f;
+      }
+    }
+    throw new Error(`Cannot find field with the name: ${fieldName}`);
+  }
 }

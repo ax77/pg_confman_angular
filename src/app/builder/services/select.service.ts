@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {Field, Table} from "../models/Tables";
 import {CounterService} from "./counter.service";
+import {JoinItem} from "../models/JoinItem";
+import {JoinsComponent} from "../02-joins/joins.component";
 
 @Injectable({
   providedIn: 'root'
@@ -110,28 +112,32 @@ export class SelectService {
 
   //////////////////////////////////////////////////////////////////////
   // joins
-  private readonly _lhsTable = new BehaviorSubject<Table>(new Table(''));
-  readonly lhsTable$ = this._lhsTable.asObservable();
 
-  private readonly _rhsTable = new BehaviorSubject<Table>(new Table(''));
-  readonly rhsTable$ = this._rhsTable.asObservable();
+  private readonly _joinItems = new BehaviorSubject<JoinItem[]>([]);
+  readonly joinItems$ = this._joinItems.asObservable();
 
-  get lhsTable(): Table {
-    return this._lhsTable.getValue();
+  get joinItems(): JoinItem[] {
+    return this._joinItems.getValue();
   }
 
-  set lhsTable(table: Table) {
-    this._lhsTable.next(table);
+  set joinItems(val: JoinItem[]) {
+    this._joinItems.next(val);
   }
 
-  get rhsTable(): Table {
-    return this._rhsTable.getValue();
+  addJoinItem(item: JoinItem) {
+    this.joinItems = [
+      ...this.joinItems, item
+    ];
   }
 
-  set rhsTable(table: Table) {
-    this._rhsTable.next(table);
+  getJoinItemByIdOrThrow(id: number): JoinItem {
+    for(let item of this.joinItems) {
+      if(item.id == id) {
+        return item;
+      }
+    }
+    throw new Error(`Cannot assign join type for id ${id}`);
   }
-
 
   //////////////////////////////////////////////////////////////////////
   // util

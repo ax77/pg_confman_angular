@@ -4,6 +4,7 @@ export class Field {
 }
 
 export class Table {
+  // TODO: these are not necessary, for debug purpose only, we do not need to keep them here later...
   public selected: boolean = false;
   public highlighted: boolean = false;
 

@@ -3,18 +3,33 @@
   <div class="joins-wrapper">
 
     <div class="select-page-buttons">
-      <button class="btn">add</button>
+      <button
+        class="btn"
+        (click)="addJoinItem()"
+      >add</button>
       <button class="btn">mul</button>
       <button class="btn">div</button>
     </div>
 
     <div class="joins-list">
 
-      <div class="join-item">
-        <button class="btn">X</button>
+      <div
+        class="join-item"
+        *ngFor="let joinItem of selectService.joinItems$ | async"
+      >
+        <button
+          class="btn"
+        >
+          {{joinItem.id}}
+        </button>
 
         <!-- <div class="join-type"> -->
-        <select class="join-type">
+        <select
+          class="join-type"
+          (change)="onJoinTypeChange($event, joinItem.id)"
+        >
+          <option>{{joinItem.joinType}}</option>
+          <option>...</option>
           <option>INNER JOIN</option>
           <option>LEFT OUTER JOIN</option>
           <option>RIGHT OUTER JOIN</option>
@@ -53,9 +68,8 @@
         >
           <option>Choose left table field...</option>
           <option
-            *ngFor="let f of (selectService.lhsTable$ | async)?.fields"
           >
-            {{ f.fieldName }}
+            TODO
           </option>
         </select>
 
@@ -73,9 +87,8 @@
         >
           <option>Choose right table field...</option>
           <option
-            *ngFor="let f of (selectService.rhsTable$ | async)?.fields"
           >
-            {{ f.fieldName }}
+            TODO
           </option>
         </select>
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SelectService} from "../../services/select.service";
+import {Table} from "../../models/Tables";
 
 @Component({
   selector: 'app-selected-tables',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectedTablesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public selectService: SelectService) { }
 
   ngOnInit(): void {
   }
 
+  unfoldTable(t: Table) {
+    t.selected = !t.selected;
+  }
+
+  foldTable(t: Table) {
+    t.selected = !t.selected;
+  }
 }

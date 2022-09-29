@@ -36,19 +36,23 @@ export class SelectService {
   }
 
   addSelectedTables(table: Table) {
+    let cloned = new Table(table.tableName);
+    for(let field of table.fields) {
+      cloned.addField(field.fieldName);
+    }
+
     this.selectedTables = [
-      ...this.selectedTables, table
+      ...this.selectedTables, cloned
     ]
   }
 
   private fillMockData() {
-    let tables = [
-      new Table('users', [new Field('user_id'), new Field('username'), new Field('password')]),
-      new Table('roles', [new Field('role_id'), new Field('authority')]),
-    ];
-    for(let i=0; i<32; i++) {
-      tables.push(new Table('users_' + i.toString(), [new Field('user_id'), new Field('username'), new Field('password')]));
-    }
+    let table = new Table('users');
+    table.addField('user_id');
+    table.addField('username');
+    table.addField('password');
+
+    let tables = [table];
     this._dbTables.next(tables);
   }
 

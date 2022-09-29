@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SelectService} from "../../services/select.service";
 
 @Component({
   selector: 'app-selected-fields',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectedFieldsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public selectService: SelectService) { }
 
   ngOnInit(): void {
   }

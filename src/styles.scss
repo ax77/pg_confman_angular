@@ -1,9 +1,16 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   user-select: none;
   background-color: rgb(232,232,232);
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
 }
 
 .container {
@@ -43,6 +50,7 @@
   border-top-right-radius: 4px;
   border: 1px solid gray;
   border-bottom: none;
+  cursor: pointer;
 }
 
 .content {
@@ -107,6 +115,11 @@
   border: none;
 }
 
+.btn-opt {
+  border: none;
+  cursor: pointer;
+}
+
 .db-tables-list {
   display: flex;
   flex-direction: column;
@@ -153,4 +166,8 @@
   margin-bottom: 4px;
   margin-left: 8px;
   //border: 1px solid gray;
+}
+
+.table-options {
+  display: flex;
 }

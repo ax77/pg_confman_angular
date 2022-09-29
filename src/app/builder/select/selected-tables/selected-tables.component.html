@@ -4,5 +4,57 @@
     <button class="btn">mul</button>
     <button class="btn">div</button>
   </div>
-  <div class="db-tables-list"></div>
+
+  <div
+    class="db-tables-list"
+  >
+
+    <div
+      class="one-table"
+      *ngFor="let t of selectService.selectedTables$ | async"
+    >
+
+      <div class="table-options">
+        <ng-container *ngIf="!t.selected">
+          <button
+            class="material-icons btn-opt"
+            (click)="unfoldTable(t)"
+          >
+            unfold_more
+          </button>
+        </ng-container>
+        <ng-container *ngIf="t.selected">
+          <button
+            class="material-icons btn-opt"
+            (click)="foldTable(t)"
+          >
+            unfold_less
+          </button>
+        </ng-container>
+
+        <!-- table -->
+        <div
+          class="table-name"
+        >
+          {{t.tableName}}
+        </div>
+      </div>
+
+      <!-- fields -->
+      <div
+        class="field-group"
+        *ngIf="t.selected"
+      >
+        <div
+          class="field-name"
+          *ngFor="let f of t.fields; let fieldIndex = index;"
+        >
+          {{fieldIndex}}) {{f.fieldName}}
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>

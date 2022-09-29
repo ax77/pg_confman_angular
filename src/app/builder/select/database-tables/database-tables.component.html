@@ -13,13 +13,33 @@
       class="one-table"
       *ngFor="let t of selectService.dbTables$ | async"
     >
-      <!-- table -->
-      <div
-        class="table-name"
-        (dblclick)="onDatabaseTables_tableName_dblclick(t)"
-        (click)="onDatabaseTables_tableName_click(t)"
-      >
-        {{t.name}}
+
+      <div class="table-options">
+        <ng-container *ngIf="!t.selected">
+          <button
+            class="material-icons btn-opt"
+            (click)="unfoldTable(t)"
+          >
+            unfold_more
+          </button>
+        </ng-container>
+        <ng-container *ngIf="t.selected">
+          <button
+            class="material-icons btn-opt"
+            (click)="foldTable(t)"
+          >
+            unfold_less
+          </button>
+        </ng-container>
+
+        <!-- table -->
+        <div
+          class="table-name"
+          (dblclick)="onDatabaseTables_tableName_dblclick(t)"
+          (click)="onDatabaseTables_tableName_click(t)"
+        >
+          {{t.tableName}}
+        </div>
       </div>
 
       <!-- fields -->
@@ -33,7 +53,7 @@
           (dblclick)="onDatabaseTables_fieldName_dblclick(f)"
           (click)="onDatabaseTables_fieldName_click(f)"
         >
-          {{fieldIndex}}) {{f.name}}
+          {{fieldIndex}}) {{f.fieldName}}
         </div>
       </div>
 

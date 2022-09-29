@@ -1,10 +1,16 @@
 export class Field {
-  constructor(public name: string) {
+  constructor(public fieldName: string, public ownerTableName: string) {
   }
 }
 
 export class Table {
   public selected: boolean = false;
-  constructor(public name: string, public fields: Field[]) {
+  public fields: Field[] = [];
+
+  constructor(public tableName: string) {
+  }
+
+  addField(fieldName: string) {
+    this.fields.push(new Field(fieldName, this.tableName))
   }
 }

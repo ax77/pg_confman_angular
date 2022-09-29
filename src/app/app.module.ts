@@ -9,6 +9,7 @@ import { SelectedTablesComponent } from './builder/select/selected-tables/select
 import { SelectedFieldsComponent } from './builder/select/selected-fields/selected-fields.component';
 import { UnionTabsComponent } from './builder/containers/union-tabs/union-tabs.component';
 import { BuilderStepsTabsComponent } from './builder/containers/builder-steps-tabs/builder-steps-tabs.component';
+import { HighlightDirective } from './builder/directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BuilderStepsTabsComponent } from './builder/containers/builder-steps-ta
     SelectedTablesComponent,
     SelectedFieldsComponent,
     UnionTabsComponent,
-    BuilderStepsTabsComponent
+    BuilderStepsTabsComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,

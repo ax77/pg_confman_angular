@@ -5,6 +5,8 @@ export class Field {
 
 export class Table {
   public selected: boolean = false;
+  public highlighted: boolean = false;
+
   public fields: Field[] = [];
 
   constructor(public tableName: string) {

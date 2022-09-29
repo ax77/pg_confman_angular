@@ -26,17 +26,19 @@
         <ng-container *ngIf="t.selected">
           <button
             class="material-icons btn-opt"
-            (click)="foldTable(t)"
+            (click)="unfoldTable(t)"
           >
             unfold_less
           </button>
         </ng-container>
 
         <!-- table -->
+        <!-- ngNonBindable [appHighlight]="rowHighlightColor" -->
         <div
           class="table-name"
           (dblclick)="onDatabaseTables_tableName_dblclick(t)"
           (click)="onDatabaseTables_tableName_click(t)"
+          [ngStyle]="{'background-color': t.highlighted ? 'rgb(212,212,212)' : 'rgb(232,232,232)'}"
         >
           {{t.tableName}}
         </div>
@@ -53,7 +55,7 @@
           (dblclick)="onDatabaseTables_fieldName_dblclick(f)"
           (click)="onDatabaseTables_fieldName_click(f)"
         >
-          {{fieldIndex}}) {{f.fieldName}}
+          {{f.fieldName}}
         </div>
       </div>
 

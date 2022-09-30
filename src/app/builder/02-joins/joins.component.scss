@@ -16,7 +16,7 @@
   height: 100%;
   width: 100%;
   margin-right: 8px;
-  border: 1px solid gray;
+  border: 1px solid var(--app-border-color);
   border-top: none;
   border-bottom: none;
 }
@@ -44,4 +44,6 @@ td > select {
   height: 100%;
   outline: none;
   text-align: center;
+  background-color: var(--app-background-color);
+  color: var(--app-lightgray-color);
 }

@@ -34,11 +34,12 @@
 
         <!-- table -->
         <!-- ngNonBindable [appHighlight]="rowHighlightColor" -->
+        <!-- [ngStyle]="{'background-color': t.highlighted ? 'rgb(212,212,212)' : 'rgb(232,232,232)'}" -->
         <div
           class="table-name"
           (dblclick)="onDatabaseTables_tableName_dblclick(t)"
           (click)="onDatabaseTables_tableName_click(t)"
-          [ngStyle]="{'background-color': t.highlighted ? 'rgb(212,212,212)' : 'rgb(232,232,232)'}"
+
         >
           {{t.tableName}}
         </div>

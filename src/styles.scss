@@ -1,16 +1,40 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
+:root {
+  //--app-border-color: #dfdfdf;
+  --app-border-color: #343434;
+
+  //--app-background-color: #222222;
+  --app-background-color: #171717;
+
+  --app-gold-color: #af966d;
+
+  --app-lightgray-color: rgb(232,232,232);
+
+  --app-gray-text-color: #5d5d5d;
+
+  --app-red-color: #c62828;
+
+  --app-green-color: #0bbba9;
+
+  --app-blue-color: #007bc9;
+
+  --app-orange-color: #ff6c37;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   user-select: none;
-  background-color: rgb(232,232,232);
+  border: none;
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
+  background-color: var(--app-background-color);
+  color: var(--app-lightgray-color);
 }
 
 .container {
@@ -43,14 +67,18 @@ body {
 }
 
 .tab-item {
-  border-bottom: none;
   margin-right: 8px;
   padding: 4px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  border: 1px solid gray;
+  border: 1px solid var(--app-border-color);
+  color: var(--app-gray-text-color);
   border-bottom: none;
   cursor: pointer;
+
+  &:hover {
+    background-color: #303030;
+  }
 }
 
 .content {
@@ -58,8 +86,6 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-
-  background-color: rgb(232,232,232);
 }
 
 .footer {
@@ -68,7 +94,7 @@ body {
   justify-content: flex-end;
   min-height: 50px;
   width: 100%;
-  border-top: 1px solid gray;
+  border-top: 1px solid var(--app-border-color);
 }
 /* main layout */
 
@@ -84,7 +110,7 @@ body {
   height: 100%;
   width: 100%;
   margin-right: 8px;
-  border: 1px solid gray;
+  border: 1px solid var(--app-border-color);
   border-top: none;
   border-bottom: none;
 }
@@ -103,10 +129,8 @@ body {
   width: 100%;
   align-items: center;
   justify-content: flex-start;
-  //margin-left: 4px;
   margin-bottom: 8px;
-
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--app-border-color);
 }
 
 .btn {
@@ -115,11 +139,20 @@ body {
   display: inline-block;
   cursor: pointer;
   border: none;
+  background-color: var(--app-background-color);
+  color: var(--app-lightgray-color);
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #303030;
+  }
 }
 
 .btn-opt {
   border: none;
   cursor: pointer;
+  background: var(--app-background-color);
+  color: var(--app-lightgray-color);
 }
 
 .db-tables-list {
@@ -139,11 +172,9 @@ body {
 .union-item {
   margin-top: 4px;
   margin-bottom: 4px;
-
   padding: 4px;
   cursor: pointer;
-
-  border: 1px solid gray;
+  border: 1px solid var(--app-border-color);
 }
 
 .table-name {
@@ -151,12 +182,9 @@ body {
   padding: 4px;
   margin-left: 4px;
   width: 100%;
-
-  //border: 1px solid gray;
 }
 
 .field-group {
-  //border: 1px solid gray;
 }
 
 .field-name {
@@ -164,13 +192,11 @@ body {
   margin-left: 32px;
   margin-bottom: 2px;
   cursor: pointer;
-  //border: 1px dotted gray;
 }
 
 .one-table {
   margin-bottom: 4px;
   margin-left: 8px;
-  //border: 1px solid gray;
 }
 
 .table-options {
@@ -178,8 +204,7 @@ body {
 }
 
 .active-link {
-  background-color: rgb(212,212,212);
-  font-weight: bolder;
+  color: var(--app-green-color);
 }
 
 
@@ -189,12 +214,12 @@ table {
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
-  border: 1px dotted gray;
+  border: 1px solid var(--app-border-color);
 }
 
 th,
 td {
-  border: 1px dotted gray;
+  border: 1px solid var(--app-border-color);
 }
 
 th {
@@ -203,4 +228,26 @@ th {
 
 td {
   text-align: right;
+}
+
+// scrollbar
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--app-lightgray-color);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

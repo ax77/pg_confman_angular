@@ -6,112 +6,117 @@
       <button
         class="btn"
         (click)="addJoinItem()"
-      >add</button>
+      >add
+      </button>
       <button class="btn">mul</button>
       <button class="btn">div</button>
     </div>
 
-    <div class="joins-list">
 
-      <div
+    <table>
+
+      <thead>
+      <tr>
+        <th>Join type</th>
+        <th>Table 1</th>
+        <th>Table 2</th>
+        <th colspan="3">Condition</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr
         class="join-item"
         *ngFor="let joinItem of selectService.joinItems$ | async"
       >
-        <button
-          class="btn"
-        >
-          {{joinItem.id}}
-        </button>
+        <td>
+          <select
+            class="join-type"
+            (change)="onJoinTypeChange($event, joinItem.id)"
+          >
+            <option>{{joinItem.joinType}}</option>
+            <option>...</option>
+            <option>INNER JOIN</option>
+            <option>LEFT OUTER JOIN</option>
+            <option>RIGHT OUTER JOIN</option>
+            <option>FULL OUTER JOIN</option>
+          </select>
+        </td>
 
-        <!-- <div class="join-type"> -->
-        <select
-          class="join-type"
-          (change)="onJoinTypeChange($event, joinItem.id)"
-        >
-          <option>{{joinItem.joinType}}</option>
-          <option>...</option>
-          <option>INNER JOIN</option>
-          <option>LEFT OUTER JOIN</option>
-          <option>RIGHT OUTER JOIN</option>
-          <option>FULL OUTER JOIN</option>
-        </select>
-        <!-- </div> -->
+        <td>
+          <!-- LHS -->
+          <select
+            class="main-selector"
+            (change)="onLeftTableSelect($event, joinItem.id)"
+          >
+            <option>{{joinItem.lhsTable.tableName}}</option>
+            <option>...</option>
+            <option *ngFor="let t of selectService.selectedTables$ | async">
+              {{t.tableName}}
+            </option>
+          </select>
+        </td>
 
-        <!-- LHS -->
-        <select
-          class="main-selector"
-          (change)="onLeftTableSelect($event, joinItem.id)"
-        >
-          <option>{{joinItem.lhsTable.tableName}}</option>
-          <option>...</option>
-          <option *ngFor="let t of selectService.selectedTables$ | async">
-            {{t.tableName}}
-          </option>
-        </select>
-
-        <!-- RHS -->
-        <select
-          class="main-selector"
-          (change)="onRightTableSelect($event, joinItem.id)"
-        >
-          <option>{{joinItem.rhsTable.tableName}}</option>
-          <option>...</option>
-          <option *ngFor="let t of selectService.selectedTables$ | async">
-            {{t.tableName}}
-          </option>
-        </select>
+        <td>
+          <!-- RHS -->
+          <select
+            class="main-selector"
+            (change)="onRightTableSelect($event, joinItem.id)"
+          >
+            <option>{{joinItem.rhsTable.tableName}}</option>
+            <option>...</option>
+            <option *ngFor="let t of selectService.selectedTables$ | async">
+              {{t.tableName}}
+            </option>
+          </select>
+        </td>
 
         <!-- ON lhs.field = RHS.field -->
 
-        <div style="margin-right: 8px">ON</div>
-
-        <select
-          class="main-selector"
-          (change)="onLeftFieldSelect($event, joinItem.id)"
-        >
-          <option>{{joinItem.lhsField.fieldName}}</option>
-          <option>...</option>
-          <option
-            *ngFor="let f of joinItem.lhsTable.fields"
+        <td>
+          <select
+            class="main-selector"
+            (change)="onLeftFieldSelect($event, joinItem.id)"
           >
-            {{f.fieldName}}
-          </option>
-        </select>
+            <option>{{joinItem.lhsField.fieldName}}</option>
+            <option>...</option>
+            <option *ngFor="let f of joinItem.lhsTable.fields">
+              {{f.fieldName}}
+            </option>
+          </select>
+        </td>
 
-        <select
-          class="conditions"
-          (change)="onConditionChange($event, joinItem.id)"
-        >
-          <option>{{joinItem.condition}}</option>
-          <option>...</option>
-          <option>=</option>
-          <option><></option>
-          <option><</option>
-          <option>></option>
-          <option><=</option>
-          <option>>=</option>
-        </select>
-
-        <select
-          class="main-selector"
-          (change)="onRightFieldSelect($event, joinItem.id)"
-        >
-          <option>{{joinItem.rhsField.fieldName}}</option>
-          <option>...</option>
-          <option
-            *ngFor="let f of joinItem.rhsTable.fields"
+        <td>
+          <select
+            class="conditions"
+            (change)="onConditionChange($event, joinItem.id)"
           >
-            {{f.fieldName}}
-          </option>
-        </select>
+            <option>{{joinItem.condition}}</option>
+            <option>...</option>
+            <option>=</option>
+            <option><></option>
+            <option><</option>
+            <option>></option>
+            <option><=</option>
+            <option>>=</option>
+          </select>
+        </td>
 
-        <!-- TODO: Custom condition -->
+        <td>
+          <select
+            class="main-selector"
+            (change)="onRightFieldSelect($event, joinItem.id)"
+          >
+            <option>{{joinItem.rhsField.fieldName}}</option>
+            <option>...</option>
+            <option *ngFor="let f of joinItem.rhsTable.fields">
+              {{f.fieldName}}
+            </option>
+          </select>
+        </td>
+      </tr>
+      </tbody>
 
-        <div class="condition"></div>
-
-      </div> <!-- join-item -->
-
-    </div> <!-- joins-list -->
+    </table>
 
   </div> <!-- joins-component -->
 

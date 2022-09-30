@@ -21,36 +21,27 @@
   border-bottom: none;
 }
 
-.joins-list {
-  display: flex;
-  flex-direction: column;
-}
-
 .join-item {
-  display: flex;
-  margin-bottom: 8px;
-  align-items: center;
-}
 
-
-select {
-  padding: 8px;
-  margin-right: 8px;
-  /* border: none; */
-  outline: none;
-  /* border-radius: 0; */
-  /* appearance: none; */
 }
 
 /* elements */
 
 .join-type {
-  background-color: aliceblue;
 }
 
 .main-selector {
 }
 
 .conditions {
-  max-width: 70px;
+}
+
+
+td > select {
+  padding: 4px;
+  border: none;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  text-align: center;
 }

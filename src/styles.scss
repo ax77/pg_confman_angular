@@ -181,3 +181,26 @@ body {
   background-color: rgb(212,212,212);
   font-weight: bolder;
 }
+
+
+// table
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  border: 1px dotted gray;
+}
+
+th,
+td {
+  border: 1px dotted gray;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  text-align: right;
+}

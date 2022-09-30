@@ -28,12 +28,14 @@ export class DatabaseTablesComponent implements OnInit {
   }
 
   addMockTable() {
-    let table = new Table('users');
-    table.addField('user_id');
-    table.addField('username');
-    table.addField('password');
+    for(let x = 0; x < 100; x++) {
+      let table = new Table('users_' + x.toString());
+      table.addField('user_id');
+      table.addField('username');
+      table.addField('password');
 
-    this.selectService.addDbTables(table);
+      this.selectService.addDbTables(table);
+    }
   }
 
   onDatabaseTables_tableName_dblclick(t: Table) {

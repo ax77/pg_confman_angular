@@ -20,7 +20,7 @@
             class="material-icons btn-opt"
             (click)="unfoldTable(t)"
           >
-            unfold_more
+            chevron_right
           </button>
         </ng-container>
         <ng-container *ngIf="t.selected">
@@ -28,7 +28,7 @@
             class="material-icons btn-opt"
             (click)="unfoldTable(t)"
           >
-            unfold_less
+            expand_more
           </button>
         </ng-container>
 
@@ -39,7 +39,6 @@
           class="table-name"
           (dblclick)="onDatabaseTables_tableName_dblclick(t)"
           (click)="onDatabaseTables_tableName_click(t)"
-
         >
           {{t.tableName}}
         </div>

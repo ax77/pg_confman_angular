@@ -10,7 +10,7 @@
     <!-- fields -->
     <div
       class="field-name"
-      *ngFor="let f of selectService.queryBuilder.selectedFields"
+      *ngFor="let f of selectService.selectedFields"
     >
       {{f.ownerTable.tableName}}.{{f.fieldName}}
     </div>

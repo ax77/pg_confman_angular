@@ -17,29 +17,29 @@ export class JoinsComponent implements OnInit {
   }
 
   onLeftTableSelect(event: any, joinItemId: number) {
-    let table = this.selectService.queryBuilder.findSelectedTableOrReturnAnEmptyOne(event.target.value);
-    let joinItem = this.selectService.queryBuilder.getJoinItemByIdOrThrow(joinItemId);
+    let table = this.selectService.findSelectedTableOrReturnAnEmptyOne(event.target.value);
+    let joinItem = this.selectService.getJoinItemByIdOrThrow(joinItemId);
     joinItem.lhsTable = table;
   }
 
   onRightTableSelect(event: any, joinItemId: number) {
-    let table = this.selectService.queryBuilder.findSelectedTableOrReturnAnEmptyOne(event.target.value);
-    let joinItem = this.selectService.queryBuilder.getJoinItemByIdOrThrow(joinItemId);
+    let table = this.selectService.findSelectedTableOrReturnAnEmptyOne(event.target.value);
+    let joinItem = this.selectService.getJoinItemByIdOrThrow(joinItemId);
     joinItem.rhsTable = table;
   }
 
   addJoinItem() {
     // TODO:joins
-    this.selectService.queryBuilder.addJoinItem(new JoinItem(this.counter.getNext()));
+    this.selectService.addJoinItem(new JoinItem(this.counter.getNext()));
   }
 
   onJoinTypeChange(event: any, joinItemId: number) {
-    let joinItem = this.selectService.queryBuilder.getJoinItemByIdOrThrow(joinItemId);
+    let joinItem = this.selectService.getJoinItemByIdOrThrow(joinItemId);
     joinItem.joinType = event.target.value;
   }
 
   onLeftFieldSelect(event: any, joinItemId: number) {
-    let joinItem = this.selectService.queryBuilder.getJoinItemByIdOrThrow(joinItemId);
+    let joinItem = this.selectService.getJoinItemByIdOrThrow(joinItemId);
     if (joinItem.lhsTable && joinItem.lhsTable.tableName) {
       let field = joinItem.lhsTable.findFieldForSure(event.target.value);
       joinItem.lhsField = field;
@@ -47,7 +47,7 @@ export class JoinsComponent implements OnInit {
   }
 
   onRightFieldSelect(event: any, joinItemId: number) {
-    let joinItem = this.selectService.queryBuilder.getJoinItemByIdOrThrow(joinItemId);
+    let joinItem = this.selectService.getJoinItemByIdOrThrow(joinItemId);
     if (joinItem.rhsTable && joinItem.rhsTable.tableName) {
       let field = joinItem.rhsTable.findFieldForSure(event.target.value);
       joinItem.rhsField = field;
@@ -55,7 +55,7 @@ export class JoinsComponent implements OnInit {
   }
 
   onConditionChange(event: any, joinItemId: number) {
-    let joinItem = this.selectService.queryBuilder.getJoinItemByIdOrThrow(joinItemId);
+    let joinItem = this.selectService.getJoinItemByIdOrThrow(joinItemId);
     joinItem.condition = event.target.value;
   }
 }

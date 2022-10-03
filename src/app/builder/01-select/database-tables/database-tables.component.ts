@@ -20,7 +20,7 @@ export class DatabaseTablesComponent implements OnInit {
 
   constructor(public selectService: SelectService ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
   }
 
   getRandomId() {
@@ -34,26 +34,26 @@ export class DatabaseTablesComponent implements OnInit {
       table.addField('username');
       table.addField('password');
 
-      this.selectService.queryBuilder.addDbTables(table);
+      this.selectService.addDbTables(table);
     }
   }
 
   onDatabaseTables_tableName_dblclick(t: Table) {
-    this.selectService.queryBuilder.addSelectedTables(t);
+    this.selectService.addSelectedTables(t);
   }
 
   onDatabaseTables_tableName_click(t: Table) {
-    for (let t of this.selectService.queryBuilder.dbTables) {
+    for (let t of this.selectService.dbTables) {
       t.highlighted = false;
     }
     t.highlighted = true;
   }
 
   onDatabaseTables_fieldName_dblclick(f: Field) {
-    if(!this.selectService.queryBuilder.hasTableInSelectedTables(f.ownerTable.tableName)) {
-      this.selectService.queryBuilder.addSelectedTables(f.ownerTable);
+    if(!this.selectService.hasTableInSelectedTables(f.ownerTable.tableName)) {
+      this.selectService.addSelectedTables(f.ownerTable);
     }
-    this.selectService.queryBuilder.addSelectedFields(f);
+    this.selectService.addSelectedFields(f);
   }
 
   onDatabaseTables_fieldName_click(f: Field) {

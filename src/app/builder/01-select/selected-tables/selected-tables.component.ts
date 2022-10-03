@@ -23,12 +23,12 @@ export class SelectedTablesComponent implements OnInit {
   }
 
   onSelectedTables_fieldName_dblclick(f: Field) {
-    this.selectService.addSelectedFields(f);
+    this.selectService.queryBuilder.addSelectedFields(f);
   }
 
   onSelectedTables_tableName_dblclick(t: Table) {
     for(let f of t.fields) {
-      this.selectService.addSelectedFields(f);
+      this.selectService.queryBuilder.addSelectedFields(f);
     }
   }
 }

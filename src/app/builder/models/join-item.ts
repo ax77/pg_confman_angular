@@ -1,5 +1,4 @@
 import {Field, Table} from "./Tables";
-import {CounterService} from "../services/counter.service";
 
 export class JoinItem {
 

@@ -26,7 +26,7 @@
       <tbody>
       <tr
         class="join-item"
-        *ngFor="let joinItem of selectService.joinItems$ | async"
+        *ngFor="let joinItem of selectService.queryBuilder.joinItems"
       >
         <td>
           <select
@@ -50,7 +50,7 @@
           >
             <option>{{joinItem.lhsTable.tableName}}</option>
             <option>...</option>
-            <option *ngFor="let t of selectService.selectedTables$ | async">
+            <option *ngFor="let t of selectService.queryBuilder.selectedTables">
               {{t.tableName}}
             </option>
           </select>
@@ -64,7 +64,7 @@
           >
             <option>{{joinItem.rhsTable.tableName}}</option>
             <option>...</option>
-            <option *ngFor="let t of selectService.selectedTables$ | async">
+            <option *ngFor="let t of selectService.queryBuilder.selectedTables">
               {{t.tableName}}
             </option>
           </select>

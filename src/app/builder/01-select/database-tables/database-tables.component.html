@@ -11,7 +11,7 @@
 
     <div
       class="one-table"
-      *ngFor="let t of selectService.dbTables$ | async"
+      *ngFor="let t of selectService.queryBuilder.dbTables"
     >
 
       <div class="table-options">

@@ -34,26 +34,26 @@ export class DatabaseTablesComponent implements OnInit {
       table.addField('username');
       table.addField('password');
 
-      this.selectService.addDbTables(table);
+      this.selectService.queryBuilder.addDbTables(table);
     }
   }
 
   onDatabaseTables_tableName_dblclick(t: Table) {
-    this.selectService.addSelectedTables(t);
+    this.selectService.queryBuilder.addSelectedTables(t);
   }
 
   onDatabaseTables_tableName_click(t: Table) {
-    for (let t of this.selectService.dbTables) {
+    for (let t of this.selectService.queryBuilder.dbTables) {
       t.highlighted = false;
     }
     t.highlighted = true;
   }
 
   onDatabaseTables_fieldName_dblclick(f: Field) {
-    if(!this.selectService.hasTableInSelectedTables(f.ownerTable.tableName)) {
-      this.selectService.addSelectedTables(f.ownerTable);
+    if(!this.selectService.queryBuilder.hasTableInSelectedTables(f.ownerTable.tableName)) {
+      this.selectService.queryBuilder.addSelectedTables(f.ownerTable);
     }
-    this.selectService.addSelectedFields(f);
+    this.selectService.queryBuilder.addSelectedFields(f);
   }
 
   onDatabaseTables_fieldName_click(f: Field) {

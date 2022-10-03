@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SelectService} from "../services/select.service";
-import {JoinItem} from "../models/JoinItem";
+import {JoinItem} from "../models/join-item";
 import {CounterService} from "../services/counter.service";
 
 @Component({

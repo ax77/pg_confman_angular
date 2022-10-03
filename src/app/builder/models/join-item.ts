@@ -1,4 +1,4 @@
-import {Field, Table} from "./Tables";
+import {Field, Table} from "./table";
 
 export class JoinItem {
 

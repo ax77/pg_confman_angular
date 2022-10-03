@@ -1,6 +1,6 @@
 import { CounterService } from '../services/counter.service';
-import { JoinItem } from './JoinItem';
-import { Field, Table } from './Tables';
+import { JoinItem } from './join-item';
+import { Field, Table } from './table';
 
 export class QueryBuilder {
 

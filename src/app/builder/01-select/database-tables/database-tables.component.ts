@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SelectService} from "../../services/select.service";
-import {Field, Table} from "../../models/Tables";
+import {Field, Table} from "../../models/table";
 
 @Component({
   selector: 'app-database-tables',

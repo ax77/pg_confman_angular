@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CounterService } from './counter.service';
 import { QueryBuilder } from '../models/query-bulder';
-import { Field, Table } from '../models/Tables';
+import { Field, Table } from '../models/table';
 
 @Injectable({
   providedIn: 'root',

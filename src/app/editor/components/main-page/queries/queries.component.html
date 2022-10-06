@@ -42,7 +42,12 @@
 
         </div>
 
-        <textarea *ngIf="hasFlag(showQueryBottom)">select * from pg_stat_activity</textarea>
+        <textarea
+          *ngIf="hasFlag(showQueryBottom)"
+          (change)="doTextareaValueChange($event)"
+        >{{textareaValue}}</textarea>
+
+<!--        <textarea *ngIf="hasFlag(showQueryBottom)">select * from pg_stat_activity</textarea>-->
 
         <div class="table-wrapper">
           <table *ngIf="hasFlag(showTableBottom)">

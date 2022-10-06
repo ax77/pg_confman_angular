@@ -31,6 +31,7 @@ export class QueriesComponent implements OnInit {
   dummyNumbers = new Array(110);
 
   public dto: GenericTableDto = new GenericTableDto([], []);
+  public textareaValue = '';
 
   constructor(public selectService: SelectService, private queriesService: QueriesService) {
     this.settings.set(this.showQueryTopLeft, true);
@@ -61,7 +62,7 @@ export class QueriesComponent implements OnInit {
   onShowTableQuery(location: string) {
     this.dto.clear();
 
-    let response = this.queriesService.executeQuery('select * from pg_stat_activity').subscribe((res) => {
+    let response = this.queriesService.executeQuery(this.textareaValue.trim()).subscribe((res) => {
       for(let h of res.result.headers) {
         this.dto.addColumn(h);
       }
@@ -98,5 +99,13 @@ export class QueriesComponent implements OnInit {
 
   hasFlag(f: string) {
     return this.settings.get(f);
+  }
+
+  doTextareaValueChange(event: any) {
+    try {
+      this.textareaValue = event.target.value.trim();
+    } catch(e) {
+      console.info('could not set textarea-value');
+    }
   }
 }

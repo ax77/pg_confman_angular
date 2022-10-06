@@ -10,6 +10,7 @@ import {Field, Table} from "../../models/table";
 export class DatabaseTablesComponent implements OnInit {
 
   rowHighlightColor = 'white';
+  isHidden = false;
 
   // 1) double click on table name -> add the table to selected-tables
   // 1.1) if this table is already present in selected-tables, it means that we need to add an alias
@@ -20,7 +21,7 @@ export class DatabaseTablesComponent implements OnInit {
 
   constructor(public selectService: SelectService ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
   }
 
   getRandomId() {
@@ -62,5 +63,9 @@ export class DatabaseTablesComponent implements OnInit {
 
   unfoldTable(t: Table) {
     t.selected = !t.selected;
+  }
+
+  hide() {
+    this.isHidden = !this.isHidden;
   }
 }

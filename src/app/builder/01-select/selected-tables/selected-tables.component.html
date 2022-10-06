@@ -1,62 +1,265 @@
 <div class="select-page-database-tables">
-  <div class="select-page-buttons">
-    <button class="btn">add</button>
-    <button class="btn">mul</button>
-    <button class="btn">div</button>
-  </div>
 
-  <div
-    class="db-tables-list"
-  >
+  <div class="queries">
+    <div class="query-item">
+      <!-- bottom -->
 
-    <div
-      class="one-table"
-      *ngFor="let t of selectService.selectedTables"
-    >
+      <div class="one-query">
+        <div class="select-page-buttons">
 
-      <div class="table-options">
-        <ng-container *ngIf="!t.selected">
           <button
-            class="material-icons btn-opt"
-            (click)="unfoldTable(t)"
+            (click)="onShowTableQuery(_mainQueryLocation)"
+            *ngIf="hasFlag(showQueryBottom) else tquery3"
+            class="btn"
           >
-            unfold_more
+            Execute
           </button>
-        </ng-container>
-        <ng-container *ngIf="t.selected">
-          <button
-            class="material-icons btn-opt"
-            (click)="foldTable(t)"
-          >
-            unfold_less
-          </button>
-        </ng-container>
 
-        <!-- table -->
-        <div
-          class="table-name"
-          (dblclick)="onSelectedTables_tableName_dblclick(t)"
-        >
-          {{t.tableName}}
+          <button
+            (click)="onHideLeft()"
+            class="btn"
+            *ngIf="hasFlag(_hideLeftAdditionalQuery)"
+          >
+            Show q1
+          </button>
+
+          <button
+            (click)="onHideRight()"
+            class="btn"
+            *ngIf="hasFlag(_hideRightAdditionalQuery)"
+          >
+            Show q2
+          </button>
+
+          <ng-template #tquery3>
+            <button
+              (click)="onShowTableQuery(_mainQueryLocation)"
+              class="btn"
+            >
+              Back to query
+            </button>
+          </ng-template>
+
         </div>
-      </div>
 
-      <!-- fields -->
-      <div
-        class="field-group"
-        *ngIf="t.selected"
-      >
-        <div
-          class="field-name"
-          *ngFor="let f of t.fields; let fieldIndex = index;"
-          (dblclick)="onSelectedTables_fieldName_dblclick(f)"
-        >
-          {{f.fieldName}}
+        <textarea *ngIf="hasFlag(showQueryBottom)">select * from pg_stat_activity</textarea>
+
+        <div class="table-wrapper">
+          <table *ngIf="hasFlag(showTableBottom)">
+
+            <thead>
+            <tr>
+              <th>Join type</th>
+              <th>Table 1</th>
+              <th>Table 2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let c of dummyNumbers;">
+              <td>
+                {{c}} test
+              </td>
+              <td>
+                {{c}} test
+              </td>
+              <td>
+                {{c}} test
+              </td>
+            </tr>
+            </tbody>
+
+          </table>
         </div>
       </div>
 
     </div>
 
   </div>
+
+
+  <div class="query-item" *ngIf="!hasFlag(_hideLeftAdditionalQuery) || !hasFlag(_hideRightAdditionalQuery)" >
+
+    <div class="queries-cols">
+
+      <div class="additional-queries">
+
+        <div *ngIf="!hasFlag(_hideLeftAdditionalQuery)" class="one-query">
+          <div class="select-page-buttons">
+
+            <button
+              (click)="onShowTableQuery(_additionalQueryLeftLocation)"
+              *ngIf="hasFlag(showQueryTopLeft) else tquery1"
+              class="btn"
+            >
+              Execute
+            </button>
+
+            <button
+              (click)="onHideLeft()"
+              class="btn"
+            >
+              Hide
+            </button>
+
+            <ng-template #tquery1>
+              <button
+                (click)="onShowTableQuery(_additionalQueryLeftLocation)"
+                class="btn"
+              >
+                Back to query
+              </button>
+            </ng-template>
+
+          </div>
+
+          <textarea *ngIf="hasFlag(showQueryTopLeft)">select * from pg_stat_activity</textarea>
+
+          <div class="table-wrapper">
+            <table *ngIf="hasFlag(showTableTopLeft)">
+
+              <thead>
+              <tr>
+                <th>Join type</th>
+                <th>Table 1</th>
+                <th>Table 2</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let c of dummyNumbers;">
+                <td>
+                  {{c}} test
+                </td>
+                <td>
+                  {{c}} test
+                </td>
+                <td>
+                  {{c}} test
+                </td>
+              </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+
+        <!-- top-right -->
+
+        <div *ngIf="!hasFlag(_hideRightAdditionalQuery)" class="one-query">
+          <div class="select-page-buttons">
+
+            <button
+              (click)="onShowTableQuery(_additionalQueryRightLocation)"
+              *ngIf="hasFlag(showQueryTopRight) else tquery2"
+              class="btn"
+            >
+              Execute
+            </button>
+
+            <button
+              (click)="onHideRight()"
+              class="btn"
+            >
+              Hide
+            </button>
+
+            <ng-template #tquery2>
+              <button
+                (click)="onShowTableQuery(_additionalQueryRightLocation)"
+                class="btn"
+              >
+                Back to query
+              </button>
+            </ng-template>
+
+          </div>
+
+          <textarea *ngIf="hasFlag(showQueryTopRight)">select * from pg_stat_activity</textarea>
+
+          <div class="table-wrapper">
+            <table *ngIf="hasFlag(showTableTopRight)">
+
+              <thead>
+              <tr>
+                <th>Join type</th>
+                <th>Table 1</th>
+                <th>Table 2</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let c of dummyNumbers;">
+                <td>
+                  test
+                </td>
+                <td>
+                  test
+                </td>
+                <td>
+                  test
+                </td>
+              </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!--  <div-->
+  <!--    class="db-tables-list"-->
+  <!--  >-->
+
+  <!--    <div-->
+  <!--      class="one-table"-->
+  <!--      *ngFor="let t of selectService.selectedTables"-->
+  <!--    >-->
+
+  <!--      <div class="table-options">-->
+  <!--        <ng-container *ngIf="!t.selected">-->
+  <!--          <button-->
+  <!--            class="material-icons btn-opt"-->
+  <!--            (click)="unfoldTable(t)"-->
+  <!--          >-->
+  <!--            unfold_more-->
+  <!--          </button>-->
+  <!--        </ng-container>-->
+  <!--        <ng-container *ngIf="t.selected">-->
+  <!--          <button-->
+  <!--            class="material-icons btn-opt"-->
+  <!--            (click)="foldTable(t)"-->
+  <!--          >-->
+  <!--            unfold_less-->
+  <!--          </button>-->
+  <!--        </ng-container>-->
+
+  <!--        &lt;!&ndash; table &ndash;&gt;-->
+  <!--        <div-->
+  <!--          class="table-name"-->
+  <!--          (dblclick)="onSelectedTables_tableName_dblclick(t)"-->
+  <!--        >-->
+  <!--          {{t.tableName}}-->
+  <!--        </div>-->
+  <!--      </div>-->
+
+  <!--      &lt;!&ndash; fields &ndash;&gt;-->
+  <!--      <div-->
+  <!--        class="field-group"-->
+  <!--        *ngIf="t.selected"-->
+  <!--      >-->
+  <!--        <div-->
+  <!--          class="field-name"-->
+  <!--          *ngFor="let f of t.fields; let fieldIndex = index;"-->
+  <!--          (dblclick)="onSelectedTables_fieldName_dblclick(f)"-->
+  <!--        >-->
+  <!--          {{f.fieldName}}-->
+  <!--        </div>-->
+  <!--      </div>-->
+
+  <!--    </div>-->
+
+  <!--  </div>-->
 
 </div>

@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectComponent implements OnInit {
 
+  isHidden = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  hide() {
+    this.isHidden = !this.isHidden;
+  }
 }

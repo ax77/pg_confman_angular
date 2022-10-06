@@ -1,5 +1,5 @@
 export class Field {
-  constructor(public fieldName: string, public ownerTable: Table) {
+  constructor(public fieldName: string, public ownerTable: Table, public datatype = 'integer') {
   }
 }
 

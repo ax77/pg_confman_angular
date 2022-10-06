@@ -1,12 +1,14 @@
-<div class="select-page-database-tables">
-  <div class="select-page-buttons">
-    <button class="btn" (click)="addMockTable()">add</button>
-    <button class="btn">mul</button>
-    <button class="btn">div</button>
-  </div>
+<div
+  class="select-page-database-tables"
+>
+<!--  <div class="select-page-buttons">-->
+<!--    <button class="btn" (click)="addMockTable()">add</button>-->
+<!--    <button class="btn" (click)="hide()">hide</button>-->
+<!--  </div>-->
 
   <div
     class="db-tables-list"
+
   >
 
     <div
@@ -55,7 +57,7 @@
           (dblclick)="onDatabaseTables_fieldName_dblclick(f)"
           (click)="onDatabaseTables_fieldName_click(f)"
         >
-          {{f.fieldName}}
+          {{f.fieldName}} <span class="field-type">[{{f.datatype}}]</span>
         </div>
       </div>
 

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CounterService } from './counter.service';
+import { CounterService } from '../shared/services/counter.service';
 import { QueryBuilder } from '../models/query-bulder';
 import { Field, Table } from '../models/table';
-import { JoinItem } from '../models/join-item';
 
-@Injectable({ 
+@Injectable({
   providedIn: 'root',
 })
 export class SelectService {
@@ -26,11 +25,11 @@ export class SelectService {
   hasTableInSelectedTables(tableName: string): boolean {
     return this.queryBuilder.hasTableInSelectedTables(tableName);
   }
-  
+
   addSelectedTables(t: Table) {
     this.queryBuilder.addSelectedTables(t);
   }
-  
+
   addDbTables(table: Table) {
     this.queryBuilder.addDbTables(table);
   }
@@ -47,20 +46,8 @@ export class SelectService {
     return this.queryBuilder.selectedFields;
   }
 
-  get joinItems(): JoinItem[] {
-    return this.queryBuilder.joinItems;
-  }
-
-  getJoinItemByIdOrThrow(joinItemId: number): JoinItem {
-    return this.queryBuilder.getJoinItemByIdOrThrow(joinItemId);
-  }
-
   findSelectedTableOrReturnAnEmptyOne(tableName: string): Table {
     return this.queryBuilder.findSelectedTableOrReturnAnEmptyOne(tableName);
-  }
-
-  addJoinItem(item: JoinItem) {
-    this.queryBuilder.addJoinItem(item);
   }
 
 

@@ -3,30 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SelectComponent } from './builder/01-select/select.component';
-import { DatabaseTablesComponent } from './builder/01-select/database-tables/database-tables.component';
-import { SelectedTablesComponent } from './builder/01-select/selected-tables/selected-tables.component';
-import { SelectedFieldsComponent } from './builder/01-select/selected-fields/selected-fields.component';
-import { UnionTabsComponent } from './builder/containers/union-tabs/union-tabs.component';
-import { BuilderStepsTabsComponent } from './builder/containers/builder-steps-tabs/builder-steps-tabs.component';
-import { HighlightDirective } from './builder/directives/highlight.directive';
-import { JoinsComponent } from './builder/02-joins/joins.component';
+import { MainPageComponent } from './editor/components/main-page/main-page.component';
+import { DatabaseTablesComponent } from './editor/components/main-page/database-tables/database-tables.component';
+import { QueriesComponent } from './editor/components/main-page/queries/queries.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
-    SelectComponent,
+    MainPageComponent,
     DatabaseTablesComponent,
-    SelectedTablesComponent,
-    SelectedFieldsComponent,
-    UnionTabsComponent,
-    BuilderStepsTabsComponent,
-    HighlightDirective,
-    JoinsComponent
+    QueriesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

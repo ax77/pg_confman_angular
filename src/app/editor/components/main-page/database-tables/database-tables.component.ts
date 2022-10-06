@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SelectService} from "../../services/select.service";
-import {Field, Table} from "../../models/table";
+import {SelectService} from "../../../services/select.service";
+import {Field, Table} from "../../../models/table";
 
 @Component({
   selector: 'app-database-tables',
@@ -12,9 +12,9 @@ export class DatabaseTablesComponent implements OnInit {
   rowHighlightColor = 'white';
   isHidden = false;
 
-  // 1) double click on table name -> add the table to selected-tables
-  // 1.1) if this table is already present in selected-tables, it means that we need to add an alias
-  // 2) double click on field name -> add clicked field to selected fields, and add the table-owner to selected-tables.
+  // 1) double click on table name -> add the table to queries
+  // 1.1) if this table is already present in queries, it means that we need to add an alias
+  // 2) double click on field name -> add clicked field to selected fields, and add the table-owner to queries.
   // 2.1) if the field name is already present in selected-fields, we need to add an alias.
   // 3) single click on table name -> highlight
   // 4) single click on field name -> highlight

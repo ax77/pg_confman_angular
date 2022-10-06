@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {SelectComponent} from "./builder/01-select/select.component";
-import {JoinsComponent} from "./builder/02-joins/joins.component";
+import {MainPageComponent} from "./editor/components/main-page/main-page.component";
 
 const routes: Routes = [
-  {path: '', component: SelectComponent},
-  {path: 'joins', component: JoinsComponent}
+  {path: '', component: MainPageComponent}
 ];
 
 @NgModule({

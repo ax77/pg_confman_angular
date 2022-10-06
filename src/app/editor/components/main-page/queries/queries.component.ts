@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {SelectService} from "../../services/select.service";
-import {Field, Table} from "../../models/table";
+import {SelectService} from "../../../services/select.service";
+import {Field, Table} from "../../../models/table";
 
 @Component({
-  selector: 'app-selected-tables',
-  templateUrl: './selected-tables.component.html',
-  styleUrls: ['./selected-tables.component.scss']
+  selector: 'app-queries',
+  templateUrl: './queries.component.html',
+  styleUrls: ['./queries.component.scss']
 })
-export class SelectedTablesComponent implements OnInit {
+export class QueriesComponent implements OnInit {
 
   public readonly showQueryTopLeft = 'showQueryTopLeft';
   public readonly showQueryTopRight = 'showQueryTopRight';

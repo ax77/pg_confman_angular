@@ -1,5 +1,4 @@
-import { CounterService } from '../services/counter.service';
-import { JoinItem } from './join-item';
+import { CounterService } from '../shared/services/counter.service';
 import { Field, Table } from './table';
 
 export class QueryBuilder {
@@ -7,7 +6,6 @@ export class QueryBuilder {
   private readonly _dbTables: Table[] = [];
   private readonly _selectedTables: Table[] = [];
   private readonly _selectedFields: Field[] = [];
-  private readonly _joinItems: JoinItem[] = [];
 
   private fillMockData() {
     let usersTable = new Table('users');
@@ -95,26 +93,6 @@ export class QueryBuilder {
       }
     }
     return false;
-  }
-
-  //////////////////////////////////////////////////////////////////////
-  // 04 - joins
-  
-  get joinItems(): JoinItem[] {
-    return this._joinItems;
-  }
-
-  addJoinItem(item: JoinItem) {
-    this.joinItems.push(item);
-  }
-
-  getJoinItemByIdOrThrow(id: number): JoinItem {
-    for(let item of this.joinItems) {
-      if(item.id == id) {
-        return item;
-      }
-    }
-    throw new Error(`Cannot assign join type for id ${id}`);
   }
 
   //////////////////////////////////////////////////////////////////////

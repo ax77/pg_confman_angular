@@ -133,6 +133,7 @@ a {
   //border: 1px solid var(--app-border-color);
   border-top: none;
   border-bottom: none;
+  overflow: hidden;
 }
 
 .select-page-database-tables {
@@ -273,7 +274,7 @@ a {
 
 table {
   border-collapse: collapse;
-  table-layout: fixed;
+  //table-layout: fixed;
   width: 100%;
   border: 1px solid var(--app-border-color);
 }

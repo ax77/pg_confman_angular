@@ -49,21 +49,15 @@
 
             <thead>
             <tr>
-              <th>Join type</th>
-              <th>Table 1</th>
-              <th>Table 2</th>
+              <th *ngFor="let header of dto.columns">
+                {{header}}
+              </th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let c of dummyNumbers;">
-              <td>
-                {{c}} test
-              </td>
-              <td>
-                {{c}} test
-              </td>
-              <td>
-                {{c}} test
+            <tr *ngFor="let r of dto.rows">
+              <td *ngFor="let c of r">
+                {{c}}
               </td>
             </tr>
             </tbody>

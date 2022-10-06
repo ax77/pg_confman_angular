@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {SelectService} from "../../../services/select.service";
 import {Field, Table} from "../../../models/table";
+import {QueriesService} from "../../../services/queries/queries.service";
+import {GenericTableDto} from "../../../models/auth/generic-table-dto";
 
 @Component({
   selector: 'app-queries',
@@ -28,7 +30,9 @@ export class QueriesComponent implements OnInit {
 
   dummyNumbers = new Array(110);
 
-  constructor(public selectService: SelectService) {
+  public dto: GenericTableDto = new GenericTableDto([], []);
+
+  constructor(public selectService: SelectService, private queriesService: QueriesService) {
     this.settings.set(this.showQueryTopLeft, true);
     this.settings.set(this.showQueryTopRight, true);
     this.settings.set(this.showQueryBottom, true);
@@ -55,6 +59,22 @@ export class QueriesComponent implements OnInit {
   }
 
   onShowTableQuery(location: string) {
+    this.dto.clear();
+
+    let response = this.queriesService.executeQuery('select * from pg_stat_activity').subscribe((res) => {
+      for(let h of res.result.headers) {
+        this.dto.addColumn(h);
+      }
+      for(let r of res.result.rows) {
+        let row: string[] = []
+        for(let c of r) {
+          row.push(c)
+        }
+        this.dto.addRow(row)
+      }
+      console.log(this.dto)
+    });
+
     if(location === this._additionalQueryLeftLocation) {
       this.invertFlags([this.showTableTopLeft, this.showQueryTopLeft]);
     }

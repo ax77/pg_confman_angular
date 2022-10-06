@@ -10,4 +10,9 @@ export class GenericTableDto {
   public addRow(row: string[]) {
     this.rows.push(row);
   }
+
+  clear() {
+    this.columns = []
+    this.rows = []
+  }
 }

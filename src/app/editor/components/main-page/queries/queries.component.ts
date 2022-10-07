@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SelectService} from "../../../services/select.service";
 import {Field, Table} from "../../../models/table";
 import {QueriesService} from "../../../services/queries/queries.service";
@@ -11,9 +11,9 @@ import {GenericTableDto} from "../../../models/auth/generic-table-dto";
 })
 export class QueriesComponent implements OnInit {
 
-  public readonly showQueryTopLeft = 'showQueryTopLeft';
-  public readonly showQueryTopRight = 'showQueryTopRight';
-  public readonly showQueryBottom = 'showQueryBottom';
+  public readonly _showLeftQuery = '_showLeftQuery';
+  public readonly _showRightQuery = '_showRightQuery';
+  public readonly _showMainQuery = '_showMainQuery';
 
   public readonly showTableTopLeft = 'showTableTopLeft';
   public readonly showTableTopRight = 'showTableTopRight';
@@ -28,15 +28,18 @@ export class QueriesComponent implements OnInit {
 
   settings: Map<string, boolean> = new Map<string, boolean>();
 
-  dummyNumbers = new Array(110);
+  public _mainDto: GenericTableDto = new GenericTableDto([], []);
+  public _leftDto: GenericTableDto = new GenericTableDto([], []);
+  public _rightDto: GenericTableDto = new GenericTableDto([], []);
 
-  public dto: GenericTableDto = new GenericTableDto([], []);
-  public textareaValue = '';
+  public mainTextareaQuery = 'select * from pg_stat_activity';
+  public leftTextareaQuery = 'select * from pg_stat_activity limit 1';
+  public rightTextareaQuery = 'select * from pg_stat_activity limit 2';
 
   constructor(public selectService: SelectService, private queriesService: QueriesService) {
-    this.settings.set(this.showQueryTopLeft, true);
-    this.settings.set(this.showQueryTopRight, true);
-    this.settings.set(this.showQueryBottom, true);
+    this.settings.set(this._showLeftQuery, true);
+    this.settings.set(this._showRightQuery, true);
+    this.settings.set(this._showMainQuery, true);
     this.settings.set(this.showTableTopLeft, false);
     this.settings.set(this.showTableTopRight, false);
     this.settings.set(this.showTableBottom, false);
@@ -54,38 +57,75 @@ export class QueriesComponent implements OnInit {
   }
 
   invertFlags(flags: string[]) {
-    for(let f of flags) {
+    for (let f of flags) {
       this.settings.set(f, !this.settings.get(f));
     }
   }
 
   onShowTableQuery(location: string) {
-    this.dto.clear();
 
-    let response = this.queriesService.executeQuery(this.textareaValue.trim()).subscribe((res) => {
-      for(let h of res.result.headers) {
-        this.dto.addColumn(h);
-      }
-      for(let r of res.result.rows) {
-        let row: string[] = []
-        for(let c of r) {
-          row.push(c)
+    if (location === this._additionalQueryLeftLocation) {
+      this._leftDto.clear();
+    }
+    if (location === this._additionalQueryRightLocation) {
+      this._rightDto.clear();
+    }
+    if (location === this._mainQueryLocation) {
+      this._mainDto.clear();
+    }
+
+    let q = '';
+    if (location === this._additionalQueryLeftLocation) {
+      q = this.leftTextareaQuery.trim();
+    }
+    if (location === this._additionalQueryRightLocation) {
+      q = this.rightTextareaQuery.trim();
+    }
+    if (location === this._mainQueryLocation) {
+      q = this.mainTextareaQuery.trim();
+    }
+
+    let response = this.queriesService.executeQuery(q).subscribe((res) => {
+      console.log(res)
+      for (let h of res.result.fields) {
+        if (location === this._additionalQueryLeftLocation) {
+          this._leftDto.addColumn(h.ColumnName);
         }
-        this.dto.addRow(row)
+        if (location === this._additionalQueryRightLocation) {
+          this._rightDto.addColumn(h.ColumnName);
+        }
+        if (location === this._mainQueryLocation) {
+          this._mainDto.addColumn(h.ColumnName);
+        }
       }
-      console.log(this.dto)
-    });
+      for (let r of res.result.rows) {
+        let row: string[] = []
+        // @ts-ignore
+        Object.values(r).forEach(val => row.push(val.toString()));
 
-    if(location === this._additionalQueryLeftLocation) {
-      this.invertFlags([this.showTableTopLeft, this.showQueryTopLeft]);
+
+        if (location === this._additionalQueryLeftLocation) {
+          this._leftDto.addRow(row);
+        }
+        if (location === this._additionalQueryRightLocation) {
+          this._rightDto.addRow(row);
+        }
+        if (location === this._mainQueryLocation) {
+          this._mainDto.addRow(row);
+        }
+      }
+    })
+
+    if (location === this._additionalQueryLeftLocation) {
+      this.invertFlags([this.showTableTopLeft, this._showLeftQuery]);
     }
 
-    if(location === this._additionalQueryRightLocation) {
-      this.invertFlags([this.showTableTopRight, this.showQueryTopRight]);
+    if (location === this._additionalQueryRightLocation) {
+      this.invertFlags([this.showTableTopRight, this._showRightQuery]);
     }
 
-    if(location === this._mainQueryLocation) {
-      this.invertFlags([this.showTableBottom , this.showQueryBottom]);
+    if (location === this._mainQueryLocation) {
+      this.invertFlags([this.showTableBottom, this._showMainQuery]);
     }
   }
 
@@ -101,10 +141,18 @@ export class QueriesComponent implements OnInit {
     return this.settings.get(f);
   }
 
-  doTextareaValueChange(event: any) {
+  doTextareaValueChange(location: string, event: any) {
     try {
-      this.textareaValue = event.target.value.trim();
-    } catch(e) {
+      if (location === this._mainQueryLocation) {
+        this.mainTextareaQuery = event.target.value.trim();
+      }
+      if (location === this._additionalQueryLeftLocation) {
+        this.leftTextareaQuery = event.target.value.trim();
+      }
+      if (location === this._additionalQueryRightLocation) {
+        this.rightTextareaQuery = event.target.value.trim();
+      }
+    } catch (e) {
       console.info('could not set textarea-value');
     }
   }

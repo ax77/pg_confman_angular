@@ -9,7 +9,7 @@
 
           <button
             (click)="onShowTableQuery(_mainQueryLocation)"
-            *ngIf="hasFlag(showQueryBottom) else tquery3"
+            *ngIf="hasFlag(_showMainQuery) else tquery3"
             class="btn"
           >
             Execute
@@ -43,24 +43,22 @@
         </div>
 
         <textarea
-          *ngIf="hasFlag(showQueryBottom)"
-          (change)="doTextareaValueChange($event)"
-        >{{textareaValue}}</textarea>
-
-<!--        <textarea *ngIf="hasFlag(showQueryBottom)">select * from pg_stat_activity</textarea>-->
+          *ngIf="hasFlag(_showMainQuery)"
+          (change)="doTextareaValueChange(_mainQueryLocation, $event)"
+        >{{mainTextareaQuery}}</textarea>
 
         <div class="table-wrapper">
           <table *ngIf="hasFlag(showTableBottom)">
 
             <thead>
             <tr>
-              <th *ngFor="let header of dto.columns">
+              <th *ngFor="let header of _mainDto.columns">
                 {{header}}
               </th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let r of dto.rows">
+            <tr *ngFor="let r of _mainDto.rows">
               <td *ngFor="let c of r">
                 {{c}}
               </td>
@@ -87,7 +85,7 @@
 
             <button
               (click)="onShowTableQuery(_additionalQueryLeftLocation)"
-              *ngIf="hasFlag(showQueryTopLeft) else tquery1"
+              *ngIf="hasFlag(_showLeftQuery) else tquery1"
               class="btn"
             >
               Execute
@@ -111,28 +109,25 @@
 
           </div>
 
-          <textarea *ngIf="hasFlag(showQueryTopLeft)">select * from pg_stat_activity</textarea>
+          <textarea
+            *ngIf="hasFlag(_showLeftQuery)"
+            (change)="doTextareaValueChange(_additionalQueryLeftLocation, $event)"
+          >{{leftTextareaQuery}}</textarea>
 
           <div class="table-wrapper">
             <table *ngIf="hasFlag(showTableTopLeft)">
 
               <thead>
               <tr>
-                <th>Join type</th>
-                <th>Table 1</th>
-                <th>Table 2</th>
+                <th *ngFor="let header of _leftDto.columns">
+                  {{header}}
+                </th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let c of dummyNumbers;">
-                <td>
-                  {{c}} test
-                </td>
-                <td>
-                  {{c}} test
-                </td>
-                <td>
-                  {{c}} test
+              <tr *ngFor="let r of _leftDto.rows">
+                <td *ngFor="let c of r">
+                  {{c}}
                 </td>
               </tr>
               </tbody>
@@ -148,7 +143,7 @@
 
             <button
               (click)="onShowTableQuery(_additionalQueryRightLocation)"
-              *ngIf="hasFlag(showQueryTopRight) else tquery2"
+              *ngIf="hasFlag(_showRightQuery) else tquery2"
               class="btn"
             >
               Execute
@@ -172,28 +167,25 @@
 
           </div>
 
-          <textarea *ngIf="hasFlag(showQueryTopRight)">select * from pg_stat_activity</textarea>
+          <textarea
+            *ngIf="hasFlag(_showRightQuery)"
+            (change)="doTextareaValueChange(_additionalQueryRightLocation, $event)"
+          >{{rightTextareaQuery}}</textarea>
 
           <div class="table-wrapper">
             <table *ngIf="hasFlag(showTableTopRight)">
 
               <thead>
               <tr>
-                <th>Join type</th>
-                <th>Table 1</th>
-                <th>Table 2</th>
+                <th *ngFor="let header of _rightDto.columns">
+                  {{header}}
+                </th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let c of dummyNumbers;">
-                <td>
-                  test
-                </td>
-                <td>
-                  test
-                </td>
-                <td>
-                  test
+              <tr *ngFor="let r of _rightDto.rows">
+                <td *ngFor="let c of r">
+                  {{c}}
                 </td>
               </tr>
               </tbody>

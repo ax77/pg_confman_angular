@@ -3,38 +3,12 @@
   height: 100%;
 }
 
-textarea {
+.additional-queries {
+  display: flex;
+  flex-direction: row;
   width: 100%;
   height: 100%;
-  resize: none;
-
-  white-space: nowrap;
-  overflow-y: auto;
-  overflow-x: auto;
-
-  caret-color: var(--app-lightgray-color);
-  outline: none;
-
-  background-color: var(--app-background-color);
-  color: var(--app-gold-color);
-
-  font-family: "Courier New", monospace;
-  font-size: 16px;
-
-  padding: 8px 8px 8px 16px;
-}
-
-.table-wrapper {
-  padding: 0px 8px 8px 16px;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: auto;
-}
-
-thead {
-  position: sticky;
-  top: 0; /* Don't forget this, required for the stickiness */
-  background-color: var(--app-hover-color);
+  //overflow: hidden; //!
 }
 
 .queries-cols {
@@ -44,28 +18,10 @@ thead {
   height: 100%;
 }
 
-.additional-queries {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  //overflow: hidden; //!
-}
-
 .query-item {
   width: 100%;
   height: 100%;
   overflow: hidden; //!
-}
-
-.one-query {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  //border-top: 1px solid var(--app-border-color);
-  border-right: 1px solid var(--app-border-color);
-  overflow-y: auto;
 }
 
 .queries {
@@ -75,4 +31,3 @@ thead {
   height: 100%;
   overflow: hidden; //!
 }
-

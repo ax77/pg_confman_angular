@@ -1,0 +1,55 @@
+<div *ngIf="!_hideEverything" class="one-query">
+  <div class="select-page-buttons">
+
+    <button
+      (click)="onShowTableQuery()"
+      *ngIf="_showQuery else tquery1"
+      class="btn"
+    >
+      Execute
+    </button>
+
+    <button
+      (click)="onHideLeft()"
+      class="btn"
+    >
+      Hide
+    </button>
+
+    <ng-template #tquery1>
+      <button
+        (click)="onShowTableQuery()"
+        class="btn"
+      >
+        Back to query
+      </button>
+    </ng-template>
+
+  </div>
+
+  <textarea
+    *ngIf="_showQuery"
+    (change)="doTextareaValueChange($event)"
+  >{{_queryText}}</textarea>
+
+  <div class="table-wrapper">
+    <table *ngIf="_showTable">
+
+      <thead>
+      <tr>
+        <th *ngFor="let header of _data.columns">
+          {{header}}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let r of _data.rows">
+        <td *ngFor="let c of r">
+          {{c}}
+        </td>
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>

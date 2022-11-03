@@ -1,5 +1,7 @@
 export interface PgSettingsEntry {
-  settingName: string
+  settingName: string,
+  settingValue: string,
+  showDocs: boolean
 }
 
 export interface PgSettings {

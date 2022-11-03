@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PgSettings } from '../editor/models/settings';
+import { PgSettings, PgSettingsEntry } from '../editor/models/settings';
 import { QueriesService } from '../editor/services/queries/queries.service';
 
 @Component({
@@ -26,6 +26,50 @@ export class SettingsComponent implements OnInit {
         s.visible = !s.visible;
       }
     }
+  }
+
+  onSettingItemClick(event: any) {
+    let id = event.target.id;
+
+    for(let elem of this.settings) {
+      if(elem.children.length > 0) {
+        for(let child of elem.children) {
+          for(let s of child.settings) {
+            if(s.settingName === id) {
+              s.showDocs = !s.showDocs;
+            }
+          }
+        }
+      } else {
+        for(let s of elem.settings) {
+          if(s.settingName === id) {
+            s.showDocs = !s.showDocs;
+          }
+        }
+      }
+    }
+
+  }
+
+  showDoc(e: PgSettingsEntry) {
+    for(let elem of this.settings) {
+      if(elem.children.length > 0) {
+        for(let child of elem.children) {
+          for(let s of child.settings) {
+            if(s.settingName === e.settingName) {
+              return s.showDocs;
+            }
+          }
+        }
+      } else {
+        for(let s of elem.settings) {
+          if(s.settingName === e.settingName) {
+            return s.showDocs;
+          }
+        }
+      }
+    }
+    return false;
   }
 
 }

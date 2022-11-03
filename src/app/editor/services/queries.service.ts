@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {GenericTableDto} from "../../models/auth/generic-table-dto";
+import {GenericTableDto} from "../models/generic-table-dto";
 import {HttpClient} from "@angular/common/http";
-import {constants} from "../../shared/constants";
-import { PgSettings } from "../../models/settings";
+import {constants} from "../shared/constants";
+import { PgSettings } from "../models/settings";
 
 @Injectable({
   providedIn: "root"

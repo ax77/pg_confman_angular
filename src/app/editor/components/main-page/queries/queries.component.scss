@@ -3,31 +3,37 @@
   height: 100%;
 }
 
-.additional-queries {
-  display: flex;
-  flex-direction: row;
+
+textarea {
   width: 100%;
   height: 100%;
-  //overflow: hidden; //!
+  resize: none;
+
+  white-space: nowrap;
+  overflow-y: auto;
+  overflow-x: auto;
+
+  caret-color: var(--app-lightgray-color);
+  outline: none;
+
+  background-color: var(--app-background-color);
+  color: var(--app-gold-color);
+
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+
+  padding: 8px 8px 8px 16px;
 }
 
-.queries-cols {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.table-wrapper {
+  padding: 0px 8px 8px 16px;
   height: 100%;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
-.query-item {
-  width: 100%;
-  height: 100%;
-  overflow: hidden; //!
-}
-
-.queries {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; //!
+thead {
+  position: sticky;
+  top: 0; /* Don't forget this, required for the stickiness */
+  background-color: var(--app-hover-color);
 }

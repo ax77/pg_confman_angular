@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PgSettings, PgSettingsEntry } from '../editor/models/settings';
-import { QueriesService } from '../editor/services/queries/queries.service';
+import { QueriesService } from '../editor/services/queries.service';
 
 @Component({
   selector: 'app-settings',
@@ -16,6 +16,8 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.settings = this.service.getSettingsResult();
+    console.log(this.settings);
+
   }
 
   onSettingClick(e: any) {

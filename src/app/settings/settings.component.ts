@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PgSettings } from '../editor/models/settings';
+import { QueriesService } from '../editor/services/queries/queries.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,16 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  resource_consumption = false;
+  settings: PgSettings[] = []
+  currentSetting: PgSettings = { title: '', id: '', children:[], settings: [], visible: false };
 
-  constructor() { }
+  constructor(private service: QueriesService) { }
 
   ngOnInit(): void {
+    this.settings = this.service.getSettingsResult();
   }
 
   onSettingClick(e: any) {
-    if(e.target.id === 'resource_consumption') {
-      this.resource_consumption = !this.resource_consumption;
+    let id = e.target.id;
+    for(let s of this.settings) {
+      if(s.id === id) {
+        this.currentSetting = s;
+        s.visible = !s.visible;
+      }
     }
   }
 

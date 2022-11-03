@@ -1,32 +1,6 @@
 <!-- component -->
 <div class="select-component">
 
-
-  <div *ngIf="!isHidden" class="db-tables selector-wrapper">
-    <app-database-tables></app-database-tables>
-  </div>
-
-  <div class="opts">
-    <ng-container *ngIf="!isHidden">
-      <button
-        class="material-icons btn-hide"
-        (click)="hide()"
-      >
-        chevron_left
-      </button>
-    </ng-container>
-    <ng-container *ngIf="isHidden">
-      <button
-        class="material-icons btn-hide"
-        (click)="hide()"
-      >
-        chevron_right
-      </button>
-    </ng-container>
-
-    <div class="spacer"></div>
-  </div>
-
   <div class="selector-wrapper">
     <app-queries></app-queries>
   </div>

@@ -44,4 +44,12 @@ export class AppComponent {
     })
   }
 
+  onSettingsClick() {
+    this.router.navigate(['settings']);
+  }
+
+  onQueriesClick() {
+    this.router.navigate(['/']);
+  }
+
 }

@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.settings-layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.settings-lhs {
+  width: 350px;
+  border-right: 1px solid var(--app-border-color);
+}
+
+.settings-rhs {
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+}

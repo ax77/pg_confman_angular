@@ -8,21 +8,24 @@ export class QueryBuilder {
   private readonly _selectedFields: Field[] = [];
 
   private fillMockData() {
-    let usersTable = new Table('users');
-    usersTable.addField('user_id');
-    usersTable.addField('username');
-    usersTable.addField('password');
 
-    let rolesTable = new Table('roles');
-    rolesTable.addField('role_id');
-    rolesTable.addField('authority');
-
-    let userHasRolesTable = new Table('user_has_roles');
-    userHasRolesTable.addField('user_has_roles_id');
-    userHasRolesTable.addField('user_id');
-    userHasRolesTable.addField('role_id');
-
-    let tables = [usersTable, rolesTable, userHasRolesTable];
+    let tables = [new Table('File Locations'),
+    new Table('Connections and Authentication'),
+    new Table('Resource Consumption'),
+    new Table('Write Ahead Log'),
+    new Table('Replication'),
+    new Table('Query Planning'),
+    new Table('Error Reporting and Logging'),
+    new Table('Run-time Statistics'),
+    new Table('Automatic Vacuuming'),
+    new Table('Client Connection Defaults'),
+    new Table('Lock Management'),
+    new Table('Version and Platform Compatibility'),
+    new Table('Error Handling'),
+    new Table('Preset Options'),
+    new Table('Customized Options'),
+    new Table('Developer Options'),
+    new Table('Short Options')];
     for(let t of tables) {
         this.addDbTables(t);
     }

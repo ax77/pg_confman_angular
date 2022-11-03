@@ -9,13 +9,6 @@
       Execute
     </button>
 
-    <button
-      (click)="onHideLeft()"
-      class="btn"
-    >
-      Hide
-    </button>
-
     <ng-template #tquery1>
       <button
         (click)="onShowTableQuery()"
@@ -30,6 +23,7 @@
   <textarea
     *ngIf="_showQuery"
     (change)="doTextareaValueChange($event)"
+    (keydown)="queryOnKeyDown($event)"
   >{{_queryText}}</textarea>
 
   <div class="table-wrapper">
@@ -38,7 +32,7 @@
       <thead>
       <tr>
         <th *ngFor="let header of _data.columns">
-          {{header}}
+          <div class="resizer">{{header}}</div>
         </th>
       </tr>
       </thead>

@@ -8,8 +8,25 @@
     </div>
   </div>
 
+  <div class="tabs">
+    <div class="tab-item" (click)="onQueriesClick()">
+      Queries
+    </div>
+    <div class="tab-item" (click)="onSettingsClick()">
+      Settings
+    </div>
+    <div class="tab-item">
+      Connections
+    </div>
+
+  </div>
+
   <div class="content">
     <router-outlet></router-outlet>
+  </div>
+
+  <div class="footer">
+
   </div>
 
 </div>

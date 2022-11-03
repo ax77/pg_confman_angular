@@ -1,14 +1,9 @@
 <div
   class="select-page-database-tables"
 >
-<!--  <div class="select-page-buttons">-->
-<!--    <button class="btn" (click)="addMockTable()">add</button>-->
-<!--    <button class="btn" (click)="hide()">hide</button>-->
-<!--  </div>-->
 
   <div
     class="db-tables-list"
-
   >
 
     <div
@@ -17,26 +12,7 @@
     >
 
       <div class="table-options">
-        <ng-container *ngIf="!t.selected">
-          <button
-            class="material-icons btn-opt"
-            (click)="unfoldTable(t)"
-          >
-            chevron_right
-          </button>
-        </ng-container>
-        <ng-container *ngIf="t.selected">
-          <button
-            class="material-icons btn-opt"
-            (click)="unfoldTable(t)"
-          >
-            expand_more
-          </button>
-        </ng-container>
 
-        <!-- table -->
-        <!-- ngNonBindable [appHighlight]="rowHighlightColor" -->
-        <!-- [ngStyle]="{'background-color': t.highlighted ? 'rgb(212,212,212)' : 'rgb(232,232,232)'}" -->
         <div
           class="table-name"
           (dblclick)="onDatabaseTables_tableName_dblclick(t)"
@@ -46,20 +22,6 @@
         </div>
       </div>
 
-      <!-- fields -->
-      <div
-        class="field-group"
-        *ngIf="t.selected"
-      >
-        <div
-          class="field-name"
-          *ngFor="let f of t.fields; let fieldIndex = index;"
-          (dblclick)="onDatabaseTables_fieldName_dblclick(f)"
-          (click)="onDatabaseTables_fieldName_click(f)"
-        >
-          {{f.fieldName}} <span class="field-type">[{{f.datatype}}]</span>
-        </div>
-      </div>
 
     </div>
 

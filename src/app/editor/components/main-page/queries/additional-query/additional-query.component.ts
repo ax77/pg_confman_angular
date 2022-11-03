@@ -14,7 +14,10 @@ export class AdditionalQueryComponent implements OnInit {
 
   public _data: GenericTableDto = new GenericTableDto([], []);
   public _hideEverything: boolean = false;
-  public _queryText: string = 'select * from pg_stat_activity limit 3';
+  public _queryText: string = `select * from
+pg_settings
+order by category, name
+  `;
 
   constructor(private queriesService: QueriesService) {
   }
@@ -49,5 +52,21 @@ export class AdditionalQueryComponent implements OnInit {
 
   doTextareaValueChange(event: any) {
     this._queryText = event.target.value.trim();
+  }
+
+  queryOnKeyDown(e: any) {
+    if (e.key == 'Tab') {
+      e.preventDefault();
+      var start = e.target.selectionStart;
+      var end = e.target.selectionEnd;
+
+      // set textarea value to: text before caret + tab + text after caret
+      e.target.value = e.target.value.substring(0, start) +
+        "    " + e.target.value.substring(end);
+
+      // put caret at right position again
+      e.target.selectionStart = e.target.selectionEnd = start + 4;
+    }
+
   }
 }

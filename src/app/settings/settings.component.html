@@ -1,0 +1,30 @@
+<div class="settings-layout">
+  <div class="settings-lhs">
+    <div class="db-tables-list">
+      <a class="table-name">File Locations</a>
+      <a class="table-name">Connections and Authentication</a>
+      <a id="resource_consumption" class="table-name" (click)="onSettingClick($event)">Resource Consumption</a>
+      <a class="table-name">Write Ahead Log</a>
+      <a class="table-name">Replication</a>
+      <a class="table-name">Query Planning</a>
+      <a class="table-name">Error Reporting and Logging</a>
+      <a class="table-name">Run-time Statistics</a>
+      <a class="table-name">Automatic Vacuuming</a>
+      <a class="table-name">Client Connection Defaults</a>
+      <a class="table-name">Lock Management</a>
+      <a class="table-name">Version and Platform Compatibility</a>
+      <a class="table-name">Error Handling</a>
+      <a class="table-name">Preset Options</a>
+      <a class="table-name">Customized Options</a>
+      <a class="table-name">Developer Options</a>
+      <a class="table-name">Short Options</a>
+    </div>
+  </div>
+
+  <div class="settings-rhs">
+    <!-- <ng-container *ngIf="resource_consumption">
+      <app-resource-consumption></app-resource-consumption>
+    </ng-container> -->
+    <app-resource-consumption></app-resource-consumption>
+  </div>
+</div>

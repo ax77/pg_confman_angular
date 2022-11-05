@@ -6,6 +6,7 @@
         (click)="onSettingClick($event)"
         class="table-name"
         id="{{ s.id }}"
+        [ngClass]="{'active-setting-link': s.visible }"
       >
         {{ s.title }}
       </a>
@@ -13,116 +14,50 @@
   </div>
 
   <div class="settings-rhs">
-    <ng-container *ngIf="currentSetting.children.length > 0; else flat">
-      <div class="settings-group" *ngFor="let groupname of currentSetting.children">
-        <div class="title">{{groupname.title}}</div>
+    <ng-container>
+      <div
+        class="settings-group"
+        *ngFor="let groupname of currentSetting.children"
+      >
+        <div class="title">{{ groupname.title }}</div>
 
         <ng-container *ngFor="let elem of groupname.settings">
           <div class="setting-one-item">
             <div class="setting-name-value-group">
               <a
-                id="{{ elem.settingName }}"
+                id="{{ elem.name }}"
                 class="setting-name"
                 (click)="onSettingItemClick($event)"
-                >{{ elem.settingName }}</a
+                >{{ elem.name }}</a
               >
               <div class="setting-value">
                 <input
-                  id="{{ elem.settingName }}"
+                  id="{{ elem.name }}"
                   class="setting-input"
                   type="text"
-                  value="{{elem.settingValue}}"
+                  value="{{ elem.setting }}"
+                  (change)="onInputChange($event)"
                 />
               </div>
             </div>
             <div class="setting-docs-types-group" *ngIf="showDoc(elem)">
               <div class="setting-docs">
-                <p *ngFor="let d of elem.enDocs;">
-                {{d}}
-                </p>
+                <ng-container *ngFor="let d of elem.docsRu">
+                  <p>
+                    {{ d }}
+                  </p>
+                </ng-container>
               </div>
               <div class="setting-types">
                 <div class="setting-types-item">
                   <div class="setting-type-item-name">context</div>
-                  <div class="setting-type-item-value">sighup</div>
+                  <div class="setting-type-item-value">{{elem.context}}</div>
                 </div>
-                <div class="setting-types-item">
-                  <div class="setting-type-item-name">vartype</div>
-                  <div class="setting-type-item-value">integer</div>
-                </div>
-                <div class="setting-types-item">
-                  <div class="setting-type-item-name">min_val</div>
-                  <div class="setting-type-item-value">100000</div>
-                </div>
-                <div class="setting-types-item">
-                  <div class="setting-type-item-name">max_val</div>
-                  <div class="setting-type-item-value">2147483647</div>
-                </div>
-
               </div>
             </div>
           </div>
-
         </ng-container>
-
       </div>
     </ng-container>
   </div>
-
-  <ng-template #flat>
-    <div class="settings-group">
-
-        <div
-          class="setting-one-item"
-          *ngFor="let elem of currentSetting.settings"
-        >
-          <div class="setting-name-value-group">
-            <a
-              id="{{ elem.settingName }}"
-              class="setting-name"
-              (click)="onSettingItemClick($event)"
-              >{{ elem.settingName }}</a
-            >
-            <div class="setting-value">
-              <input
-                id="{{ elem.settingName }}"
-                class="setting-input"
-                type="text"
-                value="{{elem.settingValue}}"
-              />
-            </div>
-          </div>
-
-          <div class="setting-docs-types-group" *ngIf="showDoc(elem)">
-            <div class="setting-docs">
-              <p *ngFor="let d of elem.enDocs;">
-              {{d}}
-              </p>
-            </div>
-            <div class="setting-types">
-              <div class="setting-types-item">
-                <div class="setting-type-item-name">context</div>
-                <div class="setting-type-item-value">sighup</div>
-              </div>
-              <div class="setting-types-item">
-                <div class="setting-type-item-name">vartype</div>
-                <div class="setting-type-item-value">integer</div>
-              </div>
-              <div class="setting-types-item">
-                <div class="setting-type-item-name">min_val</div>
-                <div class="setting-type-item-value">100000</div>
-              </div>
-              <div class="setting-types-item">
-                <div class="setting-type-item-name">max_val</div>
-                <div class="setting-type-item-value">2147483647</div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-
-    </div>
-  </ng-template>
-
 </div>

@@ -21,6 +21,10 @@ export class SettingsComponent implements OnInit {
   }
 
   onSettingClick(e: any) {
+    for(let s of this.settings) {
+      s.visible = false;
+    }
+
     let id = e.target.id;
     for(let s of this.settings) {
       if(s.id === id) {
@@ -37,14 +41,14 @@ export class SettingsComponent implements OnInit {
       if(elem.children.length > 0) {
         for(let child of elem.children) {
           for(let s of child.settings) {
-            if(s.settingName === id) {
+            if(s.name === id) {
               s.showDocs = !s.showDocs;
             }
           }
         }
       } else {
         for(let s of elem.settings) {
-          if(s.settingName === id) {
+          if(s.name === id) {
             s.showDocs = !s.showDocs;
           }
         }
@@ -58,20 +62,29 @@ export class SettingsComponent implements OnInit {
       if(elem.children.length > 0) {
         for(let child of elem.children) {
           for(let s of child.settings) {
-            if(s.settingName === e.settingName) {
+            if(s.name === e.name) {
               return s.showDocs;
             }
           }
         }
       } else {
         for(let s of elem.settings) {
-          if(s.settingName === e.settingName) {
+          if(s.name === e.name) {
             return s.showDocs;
           }
         }
       }
     }
     return false;
+  }
+
+  onInputChange(e: any) {
+    // e.target.id, e.target.value
+    let m = new Map<string, string>();
+    m.set('1', '1');
+    console.log(m.get('1'));
+    console.log(m.get('2'));
+
   }
 
 }

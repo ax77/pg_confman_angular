@@ -13,11 +13,13 @@ export class QueriesComponent {
   public _showTable: boolean = false;
 
   public _data: GenericTableDto = new GenericTableDto([], []);
-  public _hideEverything: boolean = false;
+
   public _queryText: string = `select * from
 pg_settings
 order by category, name
   `;
+
+  public _errorMessage: string = '';
 
   constructor(private queriesService: QueriesService) {
   }
@@ -25,9 +27,6 @@ order by category, name
   ngOnInit(): void {
   }
 
-  onHideLeft() {
-    this._hideEverything = true;
-  }
 
   onShowTableQuery() {
     this._showQuery = !this._showQuery;
@@ -35,7 +34,11 @@ order by category, name
 
     if(this._showTable) {
       this._data.clear();
+      this._errorMessage = '';
+
       let response = this.queriesService.executeQuery(this._queryText).subscribe((res) => {
+        this._errorMessage = res.result.errorMessage == undefined ? '' : res.result.errorMessage;
+
         for (let h of res.result.fields) {
           this._data.addColumn(h.ColumnName);
         }

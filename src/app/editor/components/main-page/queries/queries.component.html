@@ -1,5 +1,4 @@
 <div class="select-page-database-tables">
-
   <div class="select-page-buttons">
     <button
       (click)="onShowTableQuery()"
@@ -21,6 +20,8 @@
     >{{ _queryText }}</textarea
   >
 
+  <textarea style="border: 1px solid var(--app-gold-color);" *ngIf="_errorMessage.length > 0 && _showTable">{{ _errorMessage }}</textarea>
+
   <div class="table-wrapper">
     <table *ngIf="_showTable">
       <thead>
@@ -39,5 +40,4 @@
       </tbody>
     </table>
   </div>
-
 </div>

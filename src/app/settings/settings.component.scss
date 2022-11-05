@@ -22,3 +22,8 @@
   height: 100%;
   padding: 8px;
 }
+
+.active-setting-link {
+  background-color: var(--app-hover-color);
+  color: var(--app-green-color);
+}

@@ -1,3 +1,8 @@
+export interface PgSettingsExtra {
+  name: string,
+  value: string
+}
+
 export interface PgSettingsEntry {
   name: string;
   setting: string;
@@ -20,6 +25,7 @@ export interface PgSettingsEntry {
   docsEn: string[];
   docsRu: string[];
   enumvalues: string;
+  printableSettingsValues: PgSettingsExtra[];
 }
 
 export interface PgSettings {

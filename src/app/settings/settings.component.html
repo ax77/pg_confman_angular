@@ -49,9 +49,9 @@
                 </ng-container>
               </div>
               <div class="setting-types">
-                <div class="setting-types-item">
-                  <div class="setting-type-item-name">context</div>
-                  <div class="setting-type-item-value">{{elem.context}}</div>
+                <div class="setting-types-item" *ngFor="let extra of elem.printableSettingsValues">
+                  <div class="setting-type-item-name">{{extra.name}}</div>
+                  <div class="setting-type-item-value">{{extra.value}}</div>
                 </div>
               </div>
             </div>
